@@ -13,6 +13,22 @@ h6 {
     font-weight: 400;
 }
 
+/* #region aboutus */
+.cover2 {
+    background-image: url("https://ideogram.ai/assets/image/lossless/response/5QQFCXHOT_SRazSDwtp0Qw");
+    background-size: cover;
+    background-position: fixed;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    border-bottom-right-radius: 70%;
+    box-shadow: inset 0px -10px 10px var(--primary-color);
+    border-bottom: 10px solid var(--light-color);
+}
+
+.boundary2 {
+    border-bottom-right-radius: 70%;
+}
+
 .darkener {
     background-color: rgba(0, 0, 0, 0.5);
 }

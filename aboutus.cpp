@@ -85,7 +85,7 @@ int main() {
       <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
       <!-- Page Title -->
-      <title>Elxtra Motors</title>
+      <title>About Us - Elxtra</title>
       </head>
       <body>
       <header id="navbar" class="fixed-top navbar navbar-expand-md navbar-dark fade-down">
@@ -100,10 +100,10 @@ int main() {
           <nav class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-            <a class="nav-link p-0 m-3 active" aria-current="page" href="./index.cgi">Home</a>
+            <a class="nav-link p-0 m-3" href="./index.cgi">Home</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link p-0 m-3" href="./aboutus.cgi">About Us</a>
+            <a class="nav-link p-0 m-3 active" aria-current="page" href="./aboutus.cgi">About Us</a>
             </li>
             <li class="nav-item">
             <a class="nav-link p-0 m-3" href="#" tabindex="-1" aria-disabled="true">Contact Us</a>
@@ -123,22 +123,16 @@ int main() {
       </header>
       <main>
         <!-- Hero Section -->
-        <section class="min-vh-100 cover">
+        <section class="aboutus-cover">
           <section class="darkener boundary py-5 w-100 d-flex align-items-center justify-content-center">
             <section class="container">
               <section class="row">
                 <section class="col-sm-8 fade-left">
-                  <h2 class="display-3 text-light">Drive the Future with Elxtra Motors</h2>
-                  <p class="lead text-light">At Elxtra Motors, we are redefining the automotive industry with our state-of-the-art electric vehicles. Our commitment to innovation and elegance sets us apart, offering you a driving experience like no other. Discover the future of transportation today with Elxtra.</p>
-                  <a href="" class="btn btn-light text-danger fw-bold">Learn More</a>
-                </section>
-                <section class="col-sm-4">
+                  <h2 class="display-3 text-light">About Us</h2>
                 </section>
               </section>
             </section>
           </section>
-          <div class="arrow d-none d-sm-flex" onclick='window.scrollBy(50, window.innerHeight)'>
-          </div>
         </section>
         <section class="bg-dark">
           <section class="container w-100 text-center overflow-hidden position-relative py-2 d-flex gap-5 align-items-center justify-content-center">
@@ -149,54 +143,7 @@ int main() {
             <h2 class="h2 text-light m-auto">Elxtra</h2>
           </section>
         </section>
-        <section id="sticky-header" class="container-fluid py-2 text-center border-top border-5 border-bottom border-light">
-          <h2><a href="#featured" class="text-light">Check Out Our Latest Innovations</a></h2>
-         </section>
-        <!-- Featured Content -->
-        <section id="featured" class="container-fluid">
-        <section class="row">
-          <section class="col-lg-5 py-5 bg-dark border-5 rounded-circle rounded-bottom border-light">
-          <section class="sticky-sm-top pos text-white text-center d-flex flex-column align-items-center justify-content-center">
-            <h2 class="display-4 m-0 h1">Advanced Battery System</h2>
-          </section>
-          </section>
-          <section class="col-lg-7 p-0 hello battery">
-          <section class="h-100 d-flex flex-column p-md-5 p-2 text-light">
-            <h2 class="display-4">Advanced Battery System</h2>
-            <p class="lead">At Elextra Motors, we are committed to pushing the boundaries of electric vehicle technology. Our latest battery system exemplifies this commitment by offering an impressive combination of extended range and rapid charging capabilities. Here's how we're revolutionizing your driving experience:</p>
-            <ul>
-              <li>
-                Extended Range: Our state-of-the-art battery technology allows you to travel further on a single charge, reducing the need for frequent recharging stops. Whether you're commuting to work or embarking on a long-distance journey, Elextra's advanced batteries ensure you can reach your destination with ease.
-              </li>
-              <li>
-                Faster Charging Times: We understand the importance of minimizing downtime. That's why our battery system is designed for ultra-fast charging, allowing you to get back on the road quicker than ever before. Our network of high-speed charging stations further enhances this convenience, making recharging as effortless as possible.
-              </li>
-              <li>
-                Enhanced Efficiency: By optimizing energy consumption and storage, our batteries deliver superior performance and longevity. This means fewer replacements and a more sustainable driving experience.
-              </li>
-              <li>
-                Safety and Reliability: Safety is paramount at Elextra Motors. Our batteries are rigorously tested to ensure they meet the highest safety standards, providing you with peace of mind on every journey.
-              </li>
-            </ul>
-          </section>
-          </section>
-        </section>
-        <!-- Activity 2 -->
-        <section class="row">
-          <section class="col-lg-5 py-5 bg-dark">
-          <section class="sticky-sm-top pos text-white text-center d-flex flex-column align-items-center justify-content-center">
-            <h2 class="display-4 m-0 h1">Autonomous Driving</h2>
-          </section>
-          </section>
-          <section class="col-lg-7 p-0 hello">
-          <section class="bg-light d-flex flex-column p-md-5 p-2">
-            <h2 class="display-4">Activity 2</h2>
-            <p class="lead">This is the secoaScript Summer Class.</p>
-          </section>
-          </section>
-        </section>
-        </section>
-      </main>
+        
       <footer class="">
         <section class="w-100 container pt-5 pb-3">
           <section class="d-flex flex-column flex-sm-row align-items-center justify-content-center">
@@ -207,10 +154,10 @@ int main() {
               <nav>
                 <ul class="d-md-flex p-0 m-0">
                   <li class="nav-item">
-                  <a class="nav-link p-0 m-3 text-light active" aria-current="page" href="/">Home</a>
+                  <a class="nav-link p-0 m-3 text-light" href="/">Home</a>
                   </li>
                   <li class="nav-item">
-                  <a class="nav-link p-0 m-3 text-light" href="#">About Us</a>
+                  <a class="nav-link p-0 m-3 text-light active" aria-current="page" href="#">About Us</a>
                   </li>
                   <li class="nav-item">
                   <a class="nav-link p-0 m-3 text-light" href="#" tabindex="-1" aria-disabled="true">Contact Us</a>

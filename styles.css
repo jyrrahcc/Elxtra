@@ -1,0 +1,331 @@
+/* Global Styles */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Orbitron:wght@400..900&display=swap');
+/* Reset default browser styles */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Audiowide", sans-serif;
+    font-weight: 400;
+}
+
+.darkener {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.boundary {
+    min-height: 100vh;
+    border-bottom-right-radius: 70%;
+}
+
+.cover {
+    background-image: url("https://ideogram.ai/assets/image/lossless/response/5QQFCXHOT_SRazSDwtp0Qw");
+    background-size: cover;
+    background-position: fixed;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    border-bottom-right-radius: 70%;
+    box-shadow: inset 0px -10px 10px var(--primary-color);
+    border-bottom: 10px solid var(--light-color);
+}
+
+.battery {
+    background-image: url("https://ideogram.ai/assets/image/lossless/response/t9iHZFPgRy20yFV5Rhya2w");
+    background-size: cover;
+    background-position: fixed;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.autonomous {
+    background-image: url("https://ideogram.ai/assets/image/lossless/response/5QQFCXHOT_SRazSDwtp0Qw");
+    background-size: cover;
+    background-position: fixed;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.arrow {
+    position: absolute;
+    bottom: 15%;
+    right: 0px;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 100px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    animation: arrowAnimation 2s infinite;
+}
+
+.arrow::before {
+    content: "";
+    position: absolute;
+    bottom: 35px;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    border-top: 3px solid #fff;
+    border-right: 3px solid #fff;
+    transform: rotate(135deg);
+}
+
+.border-darker {
+    border-bottom: 4px solid var(--primary-color);
+}
+
+footer {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 1) 0%, rgba(215, 45, 72, 1) 100%);
+    color: #fff;
+}
+
+hr {
+    background-color: white !important;
+    border: 2px solid var(--light-color);
+}
+
+@keyframes arrowAnimation {
+    0% {
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        transform: translateX(-50%) translateY(70%);
+    }
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+ul, ol {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+a {
+    text-decoration: none !important;
+    color: #333;
+}
+
+:root {
+    --primary-color: #FF1B22;
+    --secondary-color: #D72D48;
+    --tertiary-color: #3C0415;
+    --light-color: #C1BFC1;
+    --dark-color: #343a40;
+}
+
+/* Set default font and font size */
+body {
+    font-family: "Orbitron", sans-serif;
+    font-size: 16px;
+}
+
+/* Customize the scroll bar */
+::-webkit-scrollbar {
+    width: 5px; /* Set the width of the scroll bar */
+    background-color: transparent; /* Set the background color of the scroll bar */
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent; /* Set the color of the scroll bar track */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--tertiary-color); /* Set the color of the scroll bar thumb */
+    border-radius: 50px; /* Set the border radius of the scroll bar thumb */
+    width: 5px;
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); /* Set the shadow of the scroll bar thumb */
+}
+
+::-webkit-scrollbar-track-piece:start {
+    background-color: transparent; /* Set the color of the scroll bar track piece start */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--primary-color); /* Set the color of the scroll bar thumb on hover */
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+main {
+    background: linear-gradient(90deg, rgba(255, 27, 34, 1) 0%, rgba(215, 45, 72, 1) 100%);
+}
+
+/* Add box-sizing border-box to all elements */
+* {
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+
+.logo {
+    display: block;
+    width: 40px;
+    height: 40px;
+}
+
+.btn-outline-primary:hover {
+    color: #fff;
+    background-color: var(--primary-color) !important;
+}
+
+.nav-link:hover {
+    position: relative;
+}
+
+.btn {
+    font-weight: 700;
+}
+
+.header {
+    z-index: 2024 !important;
+}
+
+#sticky-header {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 90px;
+    background-color: var(--primary-color);
+    z-index: 2020;
+}
+
+.pos {
+    top: 45% !important;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.nav-link:hover::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+    animation: underline 0.3s forwards;
+}
+
+footer .nav-link:hover::after {
+    color: var(--primary-color);
+    background-color: #fff;
+}
+
+.hello {
+    height: 1000px;
+}
+
+.socials > a:hover {
+    filter: drop-shadow(5px 5px 10px var(--light-color));
+}
+
+@keyframes underline {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+/*#region fade animation and other styles*/
+.fade {
+    opacity: 0;
+    animation: fade 2s ease forwards;
+}
+  
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-up {
+    opacity: 0;
+    transform: translateY(100px);
+    animation: fadeUp 2s ease forwards;
+}
+  
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-down {
+    opacity: 0;
+    transform: translateY(-100px);
+    animation: fadeDown 2s ease forwards;
+}
+  
+@keyframes fadeDown {
+    from {
+        opacity: 0;
+        transform: translateY(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-left {
+    opacity: 0;
+    transform: translateX(-100px);
+    animation: fadeLeft 2s ease forwards;
+}
+  
+@keyframes fadeLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.fade-right {
+    opacity: 0;
+    transform: translateX(100px);
+    animation: fadeRight 2s ease forwards;
+}
+  
+@keyframes fadeRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+/*#endregion*/

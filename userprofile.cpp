@@ -85,7 +85,7 @@ int main() {
       <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
       <!-- Page Title -->
-      <title>Elxtra Motors</title>
+      <title>user profile - Elxtra</title>
       </head>
       <body>
       <header id="navbar" class="fixed-top navbar navbar-expand-md navbar-dark fade-down">
@@ -100,13 +100,13 @@ int main() {
           <nav class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-            <a class="nav-link p-0 m-3 active" aria-current="page" href="./index.cgi">Home</a>
+            <a class="nav-link p-0 m-3" href="./index.cgi">Home</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link p-0 m-3" href="./aboutus.cgi">About Us</a>
+            <a class="nav-link p-0 m-3 active" aria-current="page" href="./aboutus.cgi">About Us</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link p-0 m-3" href="./contactus.cgi" tabindex="-1" >Contact Us</a>
+            <a class="nav-link p-0 m-3" href="./contactus.cgi">Contact Us</a>
             </li>
             <li class="nav-item">
             <a class="nav-link p-0 m-3" href="#" tabindex="-1" aria-disabled="true">FAQs</a>
@@ -123,80 +123,131 @@ int main() {
       </header>
       <main>
         <!-- Hero Section -->
-        <section class="min-vh-100 cover">
-          <section class="darkener boundary py-5 w-100 d-flex align-items-center justify-content-center">
+      <section class="cover2">
+          <section class="darkener boundary2 py-5 w-100 d-flex align-items-center justify-content-center">
             <section class="container">
               <section class="row">
                 <section class="col-sm-8 fade-left">
-                  <h2 class="display-3 text-light">Drive the Future with Elxtra Motors</h2>
-                  <p class="lead text-light">At Elxtra Motors, we are redefining the automotive industry with our state-of-the-art electric vehicles. Our commitment to innovation and elegance sets us apart, offering you a driving experience like no other. Discover the future of transportation today with Elxtra.</p>
-                  <a href="" class="btn btn-light text-danger fw-bold">Learn More</a>
-                </section>
-                <section class="col-sm-4">
+                  <h2 class="display-3 text-light">user profile</h2>
                 </section>
               </section>
             </section>
           </section>
-          <div class="arrow d-none d-sm-flex" onclick='window.scrollBy(50, window.innerHeight)'>
-          </div>
         </section>
-        <section class="bg-dark">
-          <section class="container w-100 text-center overflow-hidden position-relative py-2 d-flex gap-5 align-items-center justify-content-center">
-            <h2 class="h2 text-light m-auto">Elxtra</h2>
-            <h2 class="h2 text-light m-auto">Elxtra</h2>
-            <h2 class="h2 text-light m-auto">Elxtra</h2>
-            <h2 class="h2 text-light m-auto">Elxtra</h2>
-            <h2 class="h2 text-light m-auto">Elxtra</h2>
-          </section>
-        </section>
-        <section id="sticky-header" class="container-fluid py-2 text-center border-top border-5 border-bottom border-light">
-          <h2><a href="#featured" class="text-light">Check Out Our Latest Innovations</a></h2>
-         </section>
-        <!-- Featured Content -->
-        <section id="featured" class="container-fluid">
-        <section class="row">
-          <section class="col-lg-5 py-5 bg-dark border-5 rounded-circle rounded-bottom border-light">
-          <section class="sticky-sm-top pos text-white text-center d-flex flex-column align-items-center justify-content-center">
-            <h2 class="display-4 m-0 h1">Advanced Battery System</h2>
-          </section>
-          </section>
-          <section class="col-lg-7 p-0 hello battery">
-          <section class="h-100 d-flex flex-column p-md-5 p-2 text-light">
-            <h2 class="display-4">Advanced Battery System</h2>
-            <p class="lead">At Elextra Motors, we are committed to pushing the boundaries of electric vehicle technology. Our latest battery system exemplifies this commitment by offering an impressive combination of extended range and rapid charging capabilities. Here's how we're revolutionizing your driving experience:</p>
-            <ul>
-              <li>
-                Extended Range: Our state-of-the-art battery technology allows you to travel further on a single charge, reducing the need for frequent recharging stops. Whether you're commuting to work or embarking on a long-distance journey, Elextra's advanced batteries ensure you can reach your destination with ease.
-              </li>
-              <li>
-                Faster Charging Times: We understand the importance of minimizing downtime. That's why our battery system is designed for ultra-fast charging, allowing you to get back on the road quicker than ever before. Our network of high-speed charging stations further enhances this convenience, making recharging as effortless as possible.
-              </li>
-              <li>
-                Enhanced Efficiency: By optimizing energy consumption and storage, our batteries deliver superior performance and longevity. This means fewer replacements and a more sustainable driving experience.
-              </li>
-              <li>
-                Safety and Reliability: Safety is paramount at Elextra Motors. Our batteries are rigorously tested to ensure they meet the highest safety standards, providing you with peace of mind on every journey.
-              </li>
-            </ul>
-          </section>
-          </section>
-        </section>
-        <!-- Activity 2 -->
-        <section class="row">
-          <section class="col-lg-5 py-5 bg-dark">
-          <section class="sticky-sm-top pos text-white text-center d-flex flex-column align-items-center justify-content-center">
-            <h2 class="display-4 m-0 h1">Autonomous Driving</h2>
-          </section>
-          </section>
-          <section class="col-lg-7 p-0 hello">
-          <section class="bg-light d-flex flex-column p-md-5 p-2">
-            <h2 class="display-4">Activity 2</h2>
-            <p class="lead">This is the secoaScript Summer Class.</p>
-          </section>
-          </section>
-        </section>
-        </section>
-      </main>
+       <!-- user profile section -->
+    <div class="py-5 text-light">
+        <div class="container">
+            <div class="row justify-content-center mb-3">
+                <div class="col-md-7 text-center">
+                    <h3 class="mb-3">Meet The Team</h3>
+                    <p class="subtitle font-weight-normal">Our dedicated team at Elxtra Motors comprises industry experts and innovators who are passionate about driving the future of electric vehicles.</p>
+                </div>
+            </div>
+            <div class="row">
+                  <!-- First Column -->
+            <div class="col-lg-12 mb-4">
+                <div class="card card-shadow border-0">
+                    <div class="row no-gutters">
+                        <div class="col-md-5 pro-pic" style="background:url(https://scontent.fmnl25-4.fna.fbcdn.net/v/t1.6435-9/129937480_3725664117526569_1060890035174470038_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=53a332&_nc_eui2=AeHBX0sbd_0V-x7l2xDpyXU43JlavkSgW8vcmVq-RKBby09MoYRqtsGPsyKRagpFH11TQAqIAYG8rd-7V7OdBrEa&_nc_ohc=E9L-Hkv6SLMQ7kNvgFlO4DM&_nc_ht=scontent.fmnl25-4.fna&oh=00_AYAtfFdAkjzFxQs2jv_Sei_nzL2iop0RhfDCqZ_sPKXI_Q&oe=66C4512B) no-repeat center center / cover; height: 400px;">
+                            <div class="card-img-overlay">
+                                <ul class="list-inline position-relative text-center">
+                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-facebook"></i></a></li>
+                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-twitter"></i></a></li>
+                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-instagram"></i></a></li>
+                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-behance"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="card-body d-flex flex-column justify-content-center">
+                                <h5 class="h5 text-light">John Yrrah Cabiles</h5>
+                                <p class="lead">CEO</p>
+                                <p class="text-light">John leads the company with a visionary approach, driving innovation and ensuring the highest standards of quality and performance.</p>
+                                <p class="text-light">jyrrahcc@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Second Column -->
+            <div class="col-lg-12 mb-4">
+                <div class="card card-shadow border-0">
+                    <div class="row no-gutters">
+                        <div class="col-md-7">
+                            <div class="card-body d-flex flex-column justify-content-center">
+                                <h5 class="text-light">Hans Christian S. Purino</h5>
+                                <p class="lead">Chief Technology Officer (CTO)</p>
+                                <p class="text-light">Hans oversees the development and implementation of cutting-edge technologies, ensuring that Elxtra Motors stays at the forefront of innovation.</p>
+                                <p class="text-light">hcpurino@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="col-md-5 pro-pic" style="background:url(https://scontent.fmnl25-1.fna.fbcdn.net/v/t39.30808-6/400685916_652746530371106_8942522707911560417_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHNyYuEeXahxjCM4t3BEUl6zyGiujyJHcrPIaK6PIkdyqMEU_sT3RlpVr1Hjn03tE4nbdQqsTvnrFVGlHjAn4_j&_nc_ohc=4MqaZuj9kFgQ7kNvgGhhSfU&_nc_ht=scontent.fmnl25-1.fna&oh=00_AYDUT4eaaQ23QIliMENLFzfb4QG_b59B7P8Vfy5De8QoyA&oe=66A2BBBD) no-repeat center center / cover; height: 400px;">
+                            <div class="card-img-overlay">
+                                <ul class="list-inline position-relative text-center">
+                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-facebook"></i></a></li>
+                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-twitter"></i></a></li>
+                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-instagram"></i></a></li>
+                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-behance"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Third Column -->
+            <div class="col-lg-12 mb-4">
+                <div class="card card-shadow border-0">
+                    <div class="row no-gutters">
+                        <div class="col-md-5 pro-pic" style="background:url(https://scontent.fmnl25-1.fna.fbcdn.net/v/t39.30808-6/371077123_279360344821347_6796263961140553935_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHvbxdov0YL2VgT57SY_2uYUTUqRvW957NRNSpG9b3ns-1FoauiGl545QtI0YDvtoqmZthiSR8D37krhK5eufZM&_nc_ohc=Y_UNBUcjPV8Q7kNvgHvEw8-&_nc_ht=scontent.fmnl25-1.fna&oh=00_AYDIcyH9XvQfqQZ0xRKk49P91ZoLk8lu8FgcR7uEqu1tRA&oe=66A2DF6B) no-repeat center center / cover; height: 400px;">
+                            <div class="card-img-overlay">
+                                <ul class="list-inline position-relative text-center">
+                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-facebook"></i></a></li>
+                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-twitter"></i></a></li>
+                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-instagram"></i></a></li>
+                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-behance"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="card-body d-flex flex-column justify-content-center">
+                                <h5 class="text-light">John Paul Del Pilar</h5>
+                                <p class="lead">Chief Operating Officer (COO)</p>
+                                <p class="text-light">John Paul ensures smooth operations across all departments, focusing on efficiency and the highest standards of operational excellence.</p>
+                                <p class="text-light">jpdelpilar@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <!-- Fourth Column -->
+                <div class="col-lg-12 mb-4">
+                    <div class="card card-shadow border-0">
+                        <div class="row no-gutters">
+                            <div class="col-md-7">
+                                <div class="card-body d-flex flex-column justify-content-center">
+                                    <h5 class="text-light">Cedrick Libao</h5>
+                                  <p class="lead">Chief Operating Officer (COO)</p>
+                                <p class="text-light">John Paul ensures smooth operations across all departments, focusing on efficiency and the highest standards of operational excellence.</p>
+                                    <p class="text-light">shurigami@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="col-md-5 pro-pic" style="background:url(https://scontent.fmnl25-3.fna.fbcdn.net/v/t39.30808-6/221831942_1552136185132693_2448188182638511810_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeEn3e4E_ZfuuLlV-DtqHE0R_pLjpSd83W7-kuOlJ3zdbnpQLoygeWCXYLhXU60awXv1w08sw9JjfJyDq2FD7qb7&_nc_ohc=hTP5ZEBLwxcQ7kNvgFQihnB&_nc_ht=scontent.fmnl25-3.fna&oh=00_AYBn9gSe_oHVcreMlnRgTz6U5qwBAOdMiOTpp9Gch-YEuQ&oe=66A2B65B) no-repeat center center / cover; height: 400px;">
+                                <div class="card-img-overlay">
+                                    <ul class="list-inline position-relative text-center">
+                                        <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-facebook"></i></a></li>
+                                        <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-twitter"></i></a></li>
+                                        <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-instagram"></i></a></li>
+                                        <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-behance"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
       <footer class="">
         <section class="w-100 container pt-5 pb-3">
           <section class="d-flex flex-column flex-sm-row align-items-center justify-content-center">
@@ -207,10 +258,10 @@ int main() {
               <nav>
                 <ul class="d-md-flex p-0 m-0">
                   <li class="nav-item">
-                  <a class="nav-link p-0 m-3 text-light active" aria-current="page" href="/">Home</a>
+                  <a class="nav-link p-0 m-3 text-light" href="/">Home</a>
                   </li>
                   <li class="nav-item">
-                  <a class="nav-link p-0 m-3 text-light" href="#">About Us</a>
+                  <a class="nav-link p-0 m-3 text-light active" aria-current="page" href="#">About Us</a>
                   </li>
                   <li class="nav-item">
                   <a class="nav-link p-0 m-3 text-light" href="#" tabindex="-1" aria-disabled="true">Contact Us</a>

@@ -25,12 +25,26 @@ h6 {
     border-bottom: 10px solid var(--light-color);
 }
 
+.cover3 {
+    background-image: url("https://ideogram.ai/assets/image/lossless/response/PMtdWwkpRJa2QS80l2EmKg");
+    background-size: cover;
+    background-position: fixed;
+    background-repeat: no-repeat;
+    box-shadow: inset 10px 10px 10px var(--primary-color);
+}
+
 .boundary2 {
     border-bottom-right-radius: 70%;
 }
 
 .darkener {
     background-color: rgba(0, 0, 0, 0.5);
+}
+
+.inset-card {
+    box-shadow: inset 0px 0px 100px var(--primary-color);
+    border: 2px solid var(--light-color);
+    min-height: 300px;
 }
 
 .boundary {
@@ -47,6 +61,10 @@ h6 {
     border-bottom-right-radius: 70%;
     box-shadow: inset 0px -10px 10px var(--primary-color);
     border-bottom: 10px solid var(--light-color);
+}
+
+.gradient {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 1) 0%, rgba(215, 45, 72, 1) 100%);
 }
 
 .battery {
@@ -91,6 +109,18 @@ h6 {
     border-top: 3px solid #fff;
     border-right: 3px solid #fff;
     transform: rotate(135deg);
+}
+
+.drop-shadow {
+    filter: drop-shadow(20px 20px 50px var(--light-color));
+}
+
+.drop-shadow-primary {
+    filter: drop-shadow(20px 20px 50px var(--primary-color));
+}
+s
+.text-shadow {
+    text-shadow: 2px 2px 4px var(--primary-color);
 }
 
 .border-darker {
@@ -345,6 +375,30 @@ footer .nav-link:hover::after {
     }
 }
 /*#endregion*/
+
+.card-img {
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+}
+
+.card-display:hover {
+    filter: drop-shadow(5px 5px 10px var(--light-color));
+}
+
+.card-circle {
+    border-radius: 50%;
+    max-height: 200px;
+    height: 10vw;
+    width: 75%;
+    position: absolute;
+    bottom: 20px;
+    z-index: 0;
+}
+
+.z-index {
+    z-index: 1;
+}
 
 .form {
     display: flex;

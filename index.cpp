@@ -32,40 +32,6 @@ int main() {
       <title>Elxtra Motors</title>
       </head>
       <body>
-<<<<<<< HEAD
-      <!-- Navbar -->
-      <header id="navbar" class="animate fixed-top navbar navbar-expand-md navbar-dark fade-down">
-          <div class="container-fluid">
-              <a class="navbar-brand d-flex gap-3 align-items-center" href="./index.cgi">
-                  <img src="https://scontent.fmnl9-3.fna.fbcdn.net/v/t1.15752-9/450574779_820070233598209_5547379444503085753_n.png?_nc_cat=104&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeGCL7NnXUKoqxcaJEGWHvPYg0tBM1PjUZuDS0EzU-NRm7X0q5jk79pwhZnPTHinMxHk0BRUU6dSFOpXR6y4Zs6o&_nc_ohc=hQLcWxI2vNkQ7kNvgEdpQpd&_nc_ht=scontent.fmnl9-3.fna&oh=03_Q7cD1QGi2ixXMwmdWUXjErCioNdXkHryhhdrNwiz3gJ54LEjlw&oe=66C13C8A" alt="" width="30" height="24" class="d-inline-block align-text-top">
-                  <h1 class="display-4 fs-4 m-3">Elxtra</h1>
-              </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <nav class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                  <a class="nav-link p-0 m-3" href="./index.cgi">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link p-0 m-3 active" aria-current="page" href="./aboutus.cgi">About Us</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link p-0 m-3" href="./contactus.cgi" tabindex="-1" aria-disabled="true">Contact Us</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link p-0 m-3" href="./faqs.cgi" tabindex="-1" aria-disabled="true">FAQs</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link p-0 m-3" href="./carmodels.cgi" tabindex="-1" aria-disabled="true">Car Models</a>
-                </li>
-              </ul>
-              <div class="d-flex">
-                <a href="./login.cgi" class="btn m-3 btn-outline-primary text-light fw-bold border-light">Login</a>
-              </div>
-            </nav>
-=======
       <header id="navbar" class="fixed-top navbar navbar-expand-md navbar-dark fade-down">
         <div class="container-fluid">
           <a class="navbar-brand d-flex gap-3 align-items-center" href="#">
@@ -95,7 +61,6 @@ int main() {
           </ul>
           <div class="d-flex">
             <a class="btn m-3 btn-outline-primary text-light fw-bold border-light">Login</a>
->>>>>>> ef5bb683e98fa665207c5d28372383635a4bd823
           </div>
       </header>
       <main>
@@ -129,50 +94,239 @@ int main() {
         <section id="sticky-header" class="container-fluid py-2 text-center border-top border-5 border-bottom border-light">
           <h2><a href="#featured" class="text-light">Check Out Our Latest Innovations</a></h2>
          </section>
-        <!-- Featured Content -->
-        <section id="featured" class="container-fluid">
-        <section class="row">
-          <section class="col-lg-5 py-5 bg-dark border-5 rounded-circle rounded-bottom border-light">
-          <section class="sticky-sm-top pos text-white text-center d-flex flex-column align-items-center justify-content-center">
-            <h2 class="display-4 m-0 h1">Advanced Battery System</h2>
-          </section>
-          </section>
-          <section class="col-lg-7 p-0 hello battery">
-          <section class="h-100 d-flex flex-column p-md-5 p-2 text-light">
-            <h2 class="display-4">Advanced Battery System</h2>
-            <p class="lead">At Elextra Motors, we are committed to pushing the boundaries of electric vehicle technology. Our latest battery system exemplifies this commitment by offering an impressive combination of extended range and rapid charging capabilities. Here's how we're revolutionizing your driving experience:</p>
-            <ul>
-              <li>
-                Extended Range: Our state-of-the-art battery technology allows you to travel further on a single charge, reducing the need for frequent recharging stops. Whether you're commuting to work or embarking on a long-distance journey, Elextra's advanced batteries ensure you can reach your destination with ease.
-              </li>
-              <li>
-                Faster Charging Times: We understand the importance of minimizing downtime. That's why our battery system is designed for ultra-fast charging, allowing you to get back on the road quicker than ever before. Our network of high-speed charging stations further enhances this convenience, making recharging as effortless as possible.
-              </li>
-              <li>
-                Enhanced Efficiency: By optimizing energy consumption and storage, our batteries deliver superior performance and longevity. This means fewer replacements and a more sustainable driving experience.
-              </li>
-              <li>
-                Safety and Reliability: Safety is paramount at Elextra Motors. Our batteries are rigorously tested to ensure they meet the highest safety standards, providing you with peace of mind on every journey.
-              </li>
-            </ul>
-          </section>
-          </section>
+   <!-- Featured Content -->
+<section id="featured" class="container-fluid">
+  <section class="row">
+    <section class="col-lg-5 py-5 bg-dark border-5 rounded-circle rounded-bottom border-light">
+      <section class="sticky-sm-top pos text-white text-center d-flex flex-column align-items-center justify-content-center">
+        <h2 class="display-4 m-0 h1">Advanced Battery System</h2>
+      </section>
+    </section>
+    <section class="col-lg-7 p-0 hello battery" style="position: relative;">
+      <form class="w-100 h-100 p-md-5 p-2 rounded shadow" style="background-color: rgba(50, 50, 50, 0.5); border: 1px solid #333; position: absolute; top: 0; left: 0;">
+       <section class="mb-4 animate fade-right">
+        <h2 class="display-3 text-light">Advanced Battery System</h2>
+        <p class="lead text-light" style="font-size: 1.2rem;">At Elextra Motors, we are committed to pushing the boundaries of electric vehicle technology. Our latest battery system exemplifies this commitment by offering an impressive combination of extended range and rapid charging capabilities. Here's how we're revolutionizing your driving experience:</p>
+        <ul class="list-unstyled">
+          <li>
+            <h3 class="h4 text-light">Extended Range:</h3>
+            <p class="text-light" style="font-size: 1.1rem;">Our state-of-the-art battery technology allows you to travel further on a single charge, reducing the need for frequent recharging stops. Whether you're commuting to work or embarking on a long-distance journey, Elextra's advanced batteries ensure you can reach your destination with ease.</p>
+          </li>
+          <li>
+            <h3 class="h4 text-light">Faster Charging Times:</h3>
+            <p class="text-light" style="font-size: 1.1rem;">We understand the importance of minimizing downtime. That's why our battery system is designed for ultra-fast charging, allowing you to get back on the road quicker than ever before. Our network of high-speed charging stations further enhances this convenience, making recharging as effortless as possible.</p>
+          </li>
+          <li>
+            <h3 class="h4 text-light">Enhanced Efficiency:</h3>
+            <p class="text-light" style="font-size: 1.1rem;">By optimizing energy consumption and storage, our batteries deliver superior performance and longevity. This means fewer replacements and a more sustainable driving experience.</p>
+          </li>
+          <li>
+            <h3 class="h4 text-light">Safety and Reliability:</h3>
+            <p class="text-light" style="font-size: 1.1rem;">Safety is paramount at Elextra Motors. Our batteries are rigorously tested to ensure they meet the highest safety standards, providing you with peace of mind on every journey.</p>
+          </li>
+        </ul>
+      </form>
+    </section>
+  </section>
+</section>
+  <!-- Autonomous Driving -->
+ <section class="row">
+  <section class="col-lg-5 py-5 bg-dark">
+    <section class="sticky-sm-top pos text-white text-center d-flex flex-column align-items-center justify-content-center">
+      <h2 class="display-4 m-0 h1">Autonomous Driving</h2>
+    </section>
+  </section>
+  <section class="col-lg-7 p-0 hello autonomous" style="position: relative;">
+    <form class="w-100 h-100 p-md-5 p-2 rounded shadow" style="background-color: rgba(50, 50, 50, 0.5); border: 1px solid #333; position: absolute; top: 0; left: 0;">
+     <section class="mb-4 animate fade-right">
+      <h2 class="display-3 text-light">Autonomous Driving</h2>
+      <p class="lead text-light" style="font-size: 1.2rem;">At Elextra Motors, we are committed to revolutionizing the driving experience with our cutting-edge autonomous driving technology. Our system provides unparalleled convenience, safety, and efficiency. Here’s how we are transforming the future of driving:</p>
+      <ul class="list-unstyled">
+        <li>
+          <h3 class="h4 text-light">Advanced Sensor Technology:</h3>
+          <p class="text-light" style="font-size: 1.1rem;">Our autonomous driving system is equipped with state-of-the-art sensors that continuously monitor the vehicle’s surroundings, ensuring safe and accurate navigation under all conditions.</p>
+        </li>
+        <li>
+          <h3 class="h4 text-light">Seamless Integration:</h3>
+          <p class="text-light" style="font-size: 1.1rem;">The system integrates seamlessly with our vehicle’s existing technology, offering a smooth and intuitive user experience. Whether you're on the highway or in urban traffic, our autonomous driving technology adapts effortlessly to different driving environments.</p>
+        </li>
+        <li>
+          <h3 class="h4 text-light">Enhanced Safety:</h3>
+          <p class="text-light" style="font-size: 1.1rem;">Safety is our top priority. Our autonomous driving system is designed to respond to potential hazards in real-time, providing an additional layer of protection for you and your passengers.</p>
+        </li>
+        <li>
+          <h3 class="h4 text-light">Improved Efficiency:</h3>
+          <p class="text-light" style="font-size: 1.1rem;">By optimizing routes and driving patterns, our autonomous driving technology reduces energy consumption and enhances the overall efficiency of your journeys.</p>
+        </li>
+      </ul>
+    </form>
+  </section>
+</section>
+</section>
+
+<!-- Smart Connectivity -->
+    <section class="row">
+      <section class="col-lg-5 py-5 bg-dark">
+        <section class="sticky-sm-top pos text-white text-center d-flex flex-column align-items-center justify-content-center">
+          <h2 class="display-4 m-0 h1">Smart Connectivity</h2>
         </section>
-        <!-- Activity 2 -->
-        <section class="row">
-          <section class="col-lg-5 py-5 bg-dark">
-          <section class="sticky-sm-top pos text-white text-center d-flex flex-column align-items-center justify-content-center">
-            <h2 class="display-4 m-0 h1">Autonomous Driving</h2>
-          </section>
-          </section>
-          <section class="col-lg-7 p-0 hello">
-          <section class="bg-light d-flex flex-column p-md-5 p-2">
-            <h2 class="display-4">Activity 2</h2>
-            <p class="lead">This is the secoaScript Summer Class.</p>
-          </section>
-          </section>
+      </section>
+      <section class="col-lg-7 p-0 hello smart" style="position: relative;">
+        <form class="w-100 h-100 p-md-5 p-2 rounded shadow" style="background-color: rgba(50, 50, 50, 0.5); border: 1px solid #333; position: absolute; top: 0; left: 0;">
+         <section class="mb-4 animate fade-right">
+          <h2 class="display-3 text-light">Smart Connectivity</h2>
+          <p class="lead text-light" style="font-size: 1.2rem;">At Elextra Motors, our vehicles are designed to keep you seamlessly connected, enhancing your driving experience with the latest in smart technology. Here’s how our smart connectivity features work:</p>
+          <ul class="list-unstyled">
+            <li>
+              <h3 class="h4 text-light">Infotainment System:</h3>
+              <p class="text-light" style="font-size: 1.1rem;">Our advanced infotainment system offers a wide range of entertainment options, navigation tools, and connectivity features, ensuring that you stay informed and entertained throughout your journey.</p>
+            </li>
+            <li>
+              <h3 class="h4 text-light">Remote Monitoring:</h3>
+              <p class="text-light" style="font-size: 1.1rem;">With our remote monitoring capabilities, you can check the status of your vehicle, including battery levels and maintenance alerts, from your smartphone or other connected devices.</p>
+            </li>
+            <li>
+              <h3 class="h4 text-light">Voice Command:</h3>
+              <p class="text-light" style="font-size: 1.1rem;">Our intuitive voice command system allows you to control various features of your vehicle without taking your hands off the wheel, providing a safer and more convenient driving experience.</p>
+            </li>
+            <li>
+              <h3 class="h4 text-light">Wi-Fi Connectivity:</h3>
+              <p class="text-light" style="font-size: 1.1rem;">Stay connected on the go with our built-in Wi-Fi, allowing you and your passengers to access the internet, stream media, and stay connected with the world, no matter where you are.</p>
+            </li>
+          </ul>
+        </form>
+      </section>
+    </section>
+  </section>
+</section>
+
+  <!-- Customer Testimonials -->
+  <section class="w-100 text-light">
+    <section class="container py-5">
+     <section class="mb-4 animate fade-lft">
+        <h2 class="text-light text-center">Customer Testimonials</h2>
+        <p class="lead text-light text-center">Read what our customers have to say about their experiences with Elxtra Motors</p>
+        <section class="row d-flex flex-wrap animate fade-up">
+        <div class="row d-flex flex-wrap justify-content-center">
+            <div class="col-lg-4 p-3">
+                <section class="inset-card darkener d-flex flex-column align-items-left justify-content-center p-3 rounded-3">
+                   <div class="stars" style="color: #ffdd57; margin-bottom: 20px;"> <!-- Increased margin-bottom for stars -->
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="card-text">"Elxtra Motors has exceeded my expectations with their innovative electric vehicles."</p>
+                    <div class="d-flex align-items-left">
+                        <img src="https://expertphotography.b-cdn.net/wp-content/uploads/2019/02/Avoid-These-Stock-Images-5.jpg" alt="John Doe" class="rounded-circle mr-3" style="width: 50px; height: 50px; margin-right: 10px; margin-top: 5px;"> <!-- Added margin-right to the image -->
+                        <div style="margin-top: 10px;"> <!-- Added margin-top to move this slightly below -->
+                            <h5 class="card-title mb-0">John Doe</h5>
+                            <p class="text-light small mb-0">CEO, ABC Company</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="col-lg-4 p-3">
+                <section class="inset-card darkener d-flex flex-column align-items-left justify-content-center p-3 rounded-3">
+                   <div class="stars" style="color: #ffdd57; margin-bottom: 20px;"> <!-- Increased margin-bottom for stars -->
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="card-text">"I love driving my Elxtra electric car. It's stylish, eco-friendly, and a pleasure to drive."</p>
+                    <div class="d-flex align-items-left">
+                        <img src="https://img.freepik.com/premium-photo/asian-woman-standing-half-length-black-suit-businesswoman-holding-business-formal-suit-standing-office-room-concept-beautiful-confident-working-woman_102814-3676.jpg" alt="Jane Smith" class="rounded-circle mr-3" style="width: 50px; height: 50px; margin-right: 10px; margin-top: 5px;"> <!-- Added margin-right to the image -->
+                        <div style="margin-top: 10px;"> <!-- Added margin-top to move this slightly below -->
+                            <h5 class="card-title mb-0">Jane Smith</h5>
+                            <p class="text-light small mb-0">Marketing Manager, XYZ Corp</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        <div class="col-lg-4 p-3">
+                <section class="inset-card darkener d-flex flex-column align-items-left justify-content-center p-3 rounded-3">
+                   <div class="stars" style="color: #ffdd57; margin-bottom: 20px;"> <!-- Increased margin-bottom for stars -->
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="card-text">"Switching to an Elxtra electric vehicle is efficient and cost-effective."</p>
+                    <div class="d-flex align-items-left">
+                        <img src="https://img.freepik.com/free-photo/portrait-serious-confident-male-office-worker-spectacles-formal-shirt-with-dark-skin-poses-spacious-cabinet_273609-3441.jpg" alt="Jane Smith" class="rounded-circle mr-3" style="width: 50px; height: 50px; margin-right: 10px; margin-top: 5px;"> <!-- Added margin-right to the image -->
+                        <div style="margin-top: 10px;"> <!-- Added margin-top to move this slightly below -->
+                            <h5 class="card-title mb-0">David Johnson</h5>
+                            <p class="text-light small mb-0">CEO, 123 Industries</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
         </section>
+    </section>
+</section>
+</section>
+
+  <!-- Maintenance Services -->
+<section class="w-100 text-light">
+    <section class="container py-5">
+        <section class="mb-4 animate fade-lft">
+            <h2>Discover Our Range of Maintenance</h2>
+            <h2>Services for Your Electric Vehicle</h2>
         </section>
+        <div class="row d-flex flex-wrap justify-content-center">
+           <section class="row d-flex flex-wrap animate fade-up">
+            <div class="col-lg-4 p-3">
+                <section class="inset-card darkener d-flex flex-column align-items-start  justify-content-center p-3 rounded-3" padding: 20px; border-radius: 10px;">
+                    <img src="https://ideogram.ai/assets/image/lossless/response/jY_s02TgTQyIMFcAvLojNg" alt="Service 1" style="width: 100%; height: auto; margin-bottom: 10px;">
+                    <h5 class="card-title mb-0 mt-3" style="font-size: 1.1rem; font-weight: bold;">Efficient Charging Solutions for Your Electric Vehicle</h5>
+                    <p class="small mb-0 mt-3" style="font-size: 0.9rem;">Our team of experts is dedicated to providing top-notch customer support.</p>
+                    <a href="#" style="margin-top: 10px; text-align: left; color:#c1bfc1;">Learn More ></a>
+                </section>
+            </div>
+            <div class="col-lg-4 p-3">
+                  <section class="inset-card darkener d-flex flex-column align-items-start  justify-content-center p-3 rounded-3" padding: 20px; border-radius: 10px;">
+                    <img src="https://ideogram.ai/assets/progressive-image/balanced/response/PmHnbFWBRAC47pIMK7-XgA" alt="Service 2" style="width: 100%; height: auto; margin-bottom: 10px;">
+                    <h5 class="card-title mb-0 mt-3" style="font-size: 1.1rem; font-weight: bold;">Enhance Your Electric Driving Experience with Our Services</h5>
+                    <p class="small mb-0 mt-3" style="font-size: 0.9rem;">We offer a range of solutions to make your electric driving journey seamless.</p>
+                     <a href="#" style="margin-top: 10px; text-align: left; color:#c1bfc1;">Discover ></a>
+                </section>
+            </div>
+            <div class="col-lg-4 p-3">
+                 <section class="inset-card darkener d-flex flex-column align-items-start  justify-content-center p-3 rounded-3" padding: 20px; border-radius: 10px;">
+                    <img src="https://ideogram.ai/assets/image/lossless/response/MfJaa2DwQo6yiYnrk2PPOg" alt="Service 3" style="width: 100%; height: auto; margin-bottom: 10px;">
+                    <h5 class="card-title mb-0 mt-3" style="font-size: 1.1rem; font-weight: bold;">Stay Connected with Our Customer Support Services</h5>
+                    <p class="small mb-0 mt-3" style="font-size: 0.9rem;">Our customer support team is available to assist you whenever you need.</p>
+                      <a href="./contactus.cgi" style="margin-top: 10px; text-align: left; color:#c1bfc1;">Contact ></a>
+                </section>
+            </div>
+        </div>
+    </section>
+</section>
+</section>
+
+<!-- Test Drive or call to action -->
+<section class="w-100 text-light" style="background-image: url('https://ideogram.ai/assets/image/lossless/response/Fu1Y4up9Sreyx-tgdM7_9g'); background-size: cover; background-position: center;">
+    <section class="container py-5">
+     <section class="mb-4 animate fade-up">
+        <section class="cta endcta d-flex align-items-center">
+            <section class="container-fluid py-5 w-100 h-100 d-flex align-center">
+                <section class="container d-flex flex-column align-items-start justify-content-center">
+                    <h2 class="text-light">Experience the future of driving</h2>
+                    <p class="lead">Book a test drive now</p>
+                    <section class="d-flex">
+                        <a class="btn m-3 btn-outline-primary text-light fw-bold border-light">Test</a>
+                    </section>
+                </section>
+            </section>
+        </section>
+    </section>
+</section>
+</section>
       </main>
       <footer class="">
         <section class="w-100 container pt-5 pb-3">

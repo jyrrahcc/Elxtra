@@ -76,7 +76,15 @@ h6 {
 }
 
 .autonomous {
-    background-image: url("https://ideogram.ai/assets/image/lossless/response/5QQFCXHOT_SRazSDwtp0Qw");
+    background-image: url("https://ideogram.ai/assets/image/lossless/response/_hjU0dNsQkSD1fX-A8Nxnw");
+    background-size: cover;
+    background-position: fixed;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.smart {
+    background-image: url("https://ideogram.ai/assets/image/lossless/response/PkbrPSjsRbuYxtq9Ud7bAg");
     background-size: cover;
     background-position: fixed;
     background-attachment: fixed;

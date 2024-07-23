@@ -1,11 +1,56 @@
-  #include <iostream>
-  #include <cstdlib>
-  #include <string>
+#include <iostream>
+#include <string>
+#include <map>
+#include <cstdlib>
+#include <unistd.h>
 
-  // Function to print the HTML form
-  void print_html_form() {
-      std::cout << R"(
-  <!DOCTYPE html>
+// Function to decode URL-encoded strings
+std::string url_decode(const std::string &str) {
+    std::string decoded;
+    char ch;
+    int i, ii;
+    for (i = 0; i < str.length(); i++) {
+        if (int(str[i]) == 37) {
+            sscanf(str.substr(i + 1, 2).c_str(), "%x", &ii);
+            ch = static_cast<char>(ii);
+            decoded += ch;
+            i = i + 2;
+        } else {
+            decoded += str[i];
+        }
+    }
+    return decoded;
+}
+
+// Function to parse cookies
+std::map<std::string, std::string> parse_cookies(const std::string &cookie_header) {
+    std::map<std::string, std::string> cookies;
+    size_t pos = 0;
+    std::string token;
+    std::string header = cookie_header;
+    while ((pos = header.find("; ")) != std::string::npos) {
+        token = header.substr(0, pos);
+        size_t eq_pos = token.find("=");
+        if (eq_pos != std::string::npos) {
+            std::string key = token.substr(0, eq_pos);
+            std::string value = token.substr(eq_pos + 1);
+            cookies[key] = value;
+        }
+        header.erase(0, pos + 2);
+    }
+    if ((pos = header.find("=")) != std::string::npos) {
+        std::string key = header.substr(0, pos);
+        std::string value = header.substr(pos + 1);
+        cookies[key] = value;
+    }
+    return cookies;
+}
+
+// Function to print the HTML form
+void print_html_form(const std::string &username = "", const std::string &password = "", bool remember = false) {
+    std::cout << "Content-type: text/html\r\n\r\n";
+    std::cout << R"(
+ <!DOCTYPE html>
   <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -184,19 +229,19 @@
             <nav class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link p-0 m-3 active" aria-current="page" href="/">Home</a>
+                    <a class="nav-link p-0 m-3 active" aria-current="page" href="./index.cgi">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link p-0 m-3" href="#">About Us</a>
+                    <a class="nav-link p-0 m-3" href="./aboutus.cgi">About Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link p-0 m-3" href="#" tabindex="-1" aria-disabled="true">Contact Us</a>
+                    <a class="nav-link p-0 m-3" href="./contactus.cgi" tabindex="-1" aria-disabled="true">Contact Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link p-0 m-3" href="#" tabindex="-1" aria-disabled="true">FAQs</a>
+                    <a class="nav-link p-0 m-3" href="./faqs.cgi" tabindex="-1" aria-disabled="true">FAQs</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link p-0 m-3" href="#" tabindex="-1" aria-disabled="true">Car Models</a>
+                    <a class="nav-link p-0 m-3" href="./carmodels.cgi" tabindex="-1" aria-disabled="true">Car Models</a>
                 </li>
                 </ul>
                 <div class="d-flex">
@@ -208,222 +253,114 @@
   <body class="min-vh-100 d-flex align-items-center justify-content-center">
   <div class="card">
     <div class="card2">
-      <form class="form">
-        <p id="heading">Login</p>
-        <div class="field">
-          <svg
-            viewBox="0 0 16 16"
-            fill="currentColor"
-            height="16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
-            class="input-icon"
-          >
-            <path
-              d="M13.106 7.222c0-2.967-2.249-5.032-5.482-5.032-3.35 0-5.646 2.318-5.646 5.702 0 3.493 2.235 5.708 5.762 5.708.862 0 1.689-.123 2.304-.335v-.862c-.43.199-1.354.328-2.29.328-2.926 0-4.813-1.88-4.813-4.798 0-2.844 1.921-4.881 4.594-4.881 2.735 0 4.608 1.688 4.608 4.156 0 1.682-.554 2.769-1.416 2.769-.492 0-.772-.28-.772-.76V5.206H8.923v.834h-.11c-.266-.595-.881-.964-1.6-.964-1.4 0-2.378 1.162-2.378 2.823 0 1.737.957 2.906 2.379 2.906.8 0 1.415-.39 1.709-1.087h.11c.081.67.703 1.148 1.503 1.148 1.572 0 2.57-1.415 2.57-3.643zm-7.177.704c0-1.197.54-1.907 1.456-1.907.93 0 1.524.738 1.524 1.907S8.308 9.84 7.371 9.84c-.895 0-1.442-.725-1.442-1.914z"
-            ></path>
-          </svg>
-          <input
-            type="text"
-            class="input-field"
-            placeholder="Username"
-            autocomplete="off"
-          />
-        </div>
-        <div class="field">
-          <svg
-            viewBox="0 0 16 16"
-            fill="currentColor"
-            height="16"
-            width="16"
-            xmlns="http://www.w3.org/2000/svg"
-            class="input-icon"
-          >
-            <path
-              d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"
-            ></path>
-          </svg>
-          <input type="password" class="input-field" placeholder="Password" />
-        </div>
-        <div class="btn">
-          <button class="button1">
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Login&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          </button>
-          <button class="button2">Sign Up</button>
-        </div>
-        <button class="button3">Forgot Password</button>
-      </form>
+      <form class="form" method="POST">
+                    <p id="heading">Login</p>
+                    <div class="field">
+                        <svg viewBox="0 0 16 16" fill="currentColor" height="16" width="16" xmlns="http://www.w3.org/2000/svg" class="input-icon">
+                            <path d="M13.106 7.222c0-2.967-2.249-5.032-5.482-5.032-3.35 0-5.646 2.318-5.646 5.702 0 3.493 2.235 5.708 5.762 5.708.862 0 1.689-.123 2.304-.335v-.862c-.43.199-1.354.328-2.29.328-2.926 0-4.813-1.88-4.813-4.798 0-2.844 1.921-4.881 4.594-4.881 2.735 0 4.608 1.688 4.608 4.156 0 1.682-.554 2.769-1.416 2.769-.492 0-.772-.28-.772-.76V5.206H8.923v.834h-.11c-.266-.595-.881-.964-1.6-.964-1.4 0-2.378 1.162-2.378 2.823 0 1.737.957 2.906 2.379 2.906.8 0 1.415-.39 1.709-1.087h.11c.081.67.703 1.148 1.503 1.148 1.572 0 2.57-1.415 2.57-3.643zm-7.177.704c0-1.197.54-1.907 1.456-1.907.93 0 1.524.738 1.524 1.907S8.308 9.84 7.371 9.84c-.895 0-1.442-.725-1.442-1.914z"></path>
+                        </svg>
+                        <input class="input-field" type="text" name="username" value=")" << username << R"(" placeholder="Username" required>
+                    </div>
+                    <div class="field">
+                        <svg viewBox="0 0 16 16" fill="currentColor" height="16" width="16" xmlns="http://www.w3.org/2000/svg" class="input-icon">
+                            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"></path>
+                        </svg>
+                        <input class="input-field" type="password" name="password" value=")" << password << R"(" placeholder="Password" required>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="remember" id="remember" )" << (remember ? "checked" : "") << R"(>
+                        <label class="form-check-label" for="remember">
+                            Remember Me
+                        </label>
+                    </div>
+                    <div class="btn">
+                        <button class="button1" type="submit">
+                            Login
+                        </button>
+                        <button class="button2">Sign Up</button>
+                    </div>
+                    <button class="button3">Forgot Password</button>
+                </form>
     </div>
   </div>
 
 
   </body>
   </html>
-  )";
-  }
+)";
+}
 
-  // Function to decode URL-encoded strings
-  std::string url_decode(const std::string& str) {
-      std::string result;
-      char ch;
-      int i, ii;
-      for (i = 0; i < str.length(); i++) {
-          if (str[i] == '%') {
-              sscanf(str.substr(i + 1, 2).c_str(), "%x", &ii);
-              ch = static_cast<char>(ii);
-              result += ch;
-              i += 2;
-          } else if (str[i] == '+') {
-              result += ' ';
-          } else {
-              result += str[i];
-          }
-      }
-      return result;
-  }
+int main() {
+    // Get the request method
+    std::string request_method = getenv("REQUEST_METHOD");
 
-  // Function to get POST data
-  std::string get_post_data() {
-      std::string post_data;
-      char* content_length = getenv("CONTENT_LENGTH");
-      if (content_length) {
-          int len = atoi(content_length);
-          for (int i = 0; i < len; ++i) {
-              char ch;
-              std::cin.get(ch);
-              post_data += ch;
-          }
-      }
-      return post_data;
-  }
+    // Read environment variables for cookie and query string
+    std::string cookie_header = getenv("HTTP_COOKIE") ? getenv("HTTP_COOKIE") : "";
+    std::map<std::string, std::string> cookies = parse_cookies(cookie_header);
 
-  // Function to get form value
-  std::string get_form_value(const std::string& data, const std::string& key) {
-      std::string key_eq = key + "=";
-      size_t start = data.find(key_eq);
-      if (start != std::string::npos) {
-          start += key_eq.length();
-          size_t end = data.find("&", start);
-          return url_decode(data.substr(start, end - start));
-      }
-      return "";
-  }
+    if (request_method == "POST") {
+        // Read the form data from standard input (POST method)
+        std::string form_data;
+        std::getline(std::cin, form_data, '\0');
 
-  // Function to print result
-  void print_result(const std::string& username, const std::string& password, const std::string& remember) {
-      std::cout << "Content-type: text/html\r\n\r\n";
-      
-      const std::string correct_username = "admin";
-      const std::string correct_password = "password";
+        // Parse the form data
+        std::map<std::string, std::string> form_values;
+        size_t pos = 0;
+        while ((pos = form_data.find("&")) != std::string::npos) {
+            std::string token = form_data.substr(0, pos);
+            size_t eq_pos = token.find("=");
+            if (eq_pos != std::string::npos) {
+                std::string key = url_decode(token.substr(0, eq_pos));
+                std::string value = url_decode(token.substr(eq_pos + 1));
+                form_values[key] = value;
+            }
+            form_data.erase(0, pos + 1);
+        }
+        if ((pos = form_data.find("=")) != std::string::npos) {
+            std::string key = url_decode(form_data.substr(0, pos));
+            std::string value = url_decode(form_data.substr(pos + 1));
+            form_values[key] = value;
+        }
 
-      if (username == correct_username && password == correct_password) {
-          // Successful login
-          std::cout << R"(
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Successful</title>
-    <meta http-equiv="refresh" content="2;url=/cgi-bin/index.cgi">
-    <link href="https://ideogram.ai/assets/image/lossless/response/sgYQvRzoRnuaXM-J9Ee5bQ" rel="stylesheet">
-    <style>
-      body, html {
-        height: 100%;
-        background-color: #f4f4f4;
-      }
-      .center-box {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        color: #333;
-      }
-      .box {
-        border: 1px solid #ddd;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        background: #fff;
-      }
-    </style>
-  </head>
-  <body>
+        // Retrieve form values
+        std::string username = form_values["username"];
+        std::string password = form_values["password"];
+        bool remember = form_values.find("remember") != form_values.end();
 
-  <div class="container center-box">
-    <div class="box">
-      <h2>Login Successful</h2>
-      <p>Redirecting to the home page...</p>
-    </div>
-  </div>
+        // Check credentials
+        if (username == "admin" && password == "CDLP2024") {
+            // Set cookies if "Remember Me" is checked
+            if (remember) {
+                std::cout << "Set-Cookie: username=" << username << "; path=/; HttpOnly\r\n";
+                std::cout << "Set-Cookie: password=" << password << "; path=/; HttpOnly\r\n";
+                std::cout << "Set-Cookie: remember=1; path=/; HttpOnly\r\n";
+            }
 
-  </body>
-  </html>
-  )";
-      } else {
-          // Failed login
-          std::cout << R"(
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Failed</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-      body, html {
-        height: 100%;
-        background-color: #f4f4f4;
-        background-image: url(https://ideogram.ai/assets/image/lossless/response/AteFoH4WSjK6ToW5HkWPfw);
-        background-size: cover;
-        background-image: no-repeat;
-      }
-      .center-box {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        color: #333;
-      }
-      .box {
-        border: 1px solid #ddd;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        background: #fff;
-      }
-    </style>
-  </head>
-  <body>
+            // Redirect to home page
+            std::cout << "Location: home.cgi\r\n\r\n";
+        } else {
+            // Invalid credentials, show login page with error
+            print_html_form(username, password, remember);
+            std::cout << "<p style='color: red;'>Invalid username or password</p>";
+        }
+    } else {
+        // Check cookies for "Remember Me"
+        std::string username;
+        std::string password;
+        bool remember = false;
 
-  <div class="container center-box">
-    <div class="box">
-      <h2>Login Failed</h2>
-      <p>Invalid username or password.</p>
-      <a href="/cgi-bin/summative.cgi" class="btn btn-primary">Back</a>
-    </div>
-  </div>
+        if (cookies.find("username") != cookies.end()) {
+            username = cookies["username"];
+        }
+        if (cookies.find("password") != cookies.end()) {
+            password = cookies["password"];
+        }
+        if (cookies.find("remember") != cookies.end()) {
+            remember = true;
+        }
 
-  </body>
-  </html>
-  )";
-      }
-  }
-
-  int main() {
-      std::cout << "Content-type: text/html\r\n\r\n";
-
-      const char* request_method = getenv("REQUEST_METHOD");
-      if (request_method && std::string(request_method) == "POST") {
-          std::string post_data = get_post_data();
-          std::string username = get_form_value(post_data, "username");
-          std::string password = get_form_value(post_data, "password");
-          std::string remember = get_form_value(post_data, "remember");
-          
-          print_result(username, password, remember);
-      } else {
-          print_html_form();
-      }
-      
-      return 0;
-  }
+        // Generate the login page with prefilled fields
+        print_html_form(username, password, remember);
+    }
+    return 0;
+}

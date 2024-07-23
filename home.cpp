@@ -86,11 +86,11 @@ int main() {
         </section>
         <section class="bg-dark">
           <section class="container w-100 text-center overflow-hidden position-relative py-2 d-flex gap-5 align-items-center justify-content-center">
-            <h2 class="h2 text-light m-auto">Cars</h2>
-            <h2 class="h2 text-light m-auto">Cars</h2>
-            <h2 class="h2 text-light m-auto">Cars</h2>
-            <h2 class="h2 text-light m-auto">Cars</h2>
-            <h2 class="h2 text-light m-auto">Cars</h2>
+            <h2 class="h2 text-light m-auto">Elxtra</h2>
+            <h2 class="h2 text-light m-auto">Elxtra</h2>
+            <h2 class="h2 text-light m-auto">Elxtra</h2>
+            <h2 class="h2 text-light m-auto">Elxtra</h2>
+            <h2 class="h2 text-light m-auto">Elxtra</h2>
           </section>
         </section>
         <section id="sticky-header" class="container-fluid py-2 text-center border-top border-5 border-bottom border-light">

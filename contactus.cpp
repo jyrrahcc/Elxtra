@@ -1,18 +1,74 @@
 #include <iostream>
 #include <string>
+#include <cstdlib>
+#include <sstream>
+#include <map> 
 #include <fstream>// Include the map header
 using namespace std;
 
-int main() {
-    // Read the contents of the style sheet file
-    ifstream styleSheetFile("./styles.css");
-    string styleSheetContent((istreambuf_iterator<char>(styleSheetFile)), istreambuf_iterator<char>());
-    styleSheetFile.close();
+// Function to decode URL-encoded strings
+string urlDecode(const string& str) {
+    string result;
+    char hex[3] = {0};
+    for (size_t i = 0; i < str.length(); ++i) {
+        if (str[i] == '%') {
+            if (i + 2 < str.length()) {
+                hex[0] = str[i + 1];
+                hex[1] = str[i + 2];
+                result += static_cast<char>(strtol(hex, nullptr, 16));
+                i += 2;
+            }
+        } else if (str[i] == '+') {
+            result += ' ';
+        } else {
+            result += str[i];
+        }
+    }
+    return result;
+}
 
+// Function to parse query string into a key-value map
+map<string, string> parseQueryString(const string& query) {
+    map<string, string> params;
+    string key, value;
+    istringstream queryStream(query);
+    while (getline(queryStream, key, '=')) {
+        if (getline(queryStream, value, '&')) {
+            params[urlDecode(key)] = urlDecode(value);
+        }
+    }
+    return params;
+}
+
+int main() {
     cout << "Content-Type: text/html\n\n";
 
-    // Generate the HTML code
-    string htmlCode = R"(<!DOCTYPE html>
+    // string method = getenv("REQUEST_METHOD");
+    // string name;
+
+    // if (method == "GET") {
+    //     string query = getenv("QUERY_STRING");
+    //     auto params = parseQueryString(query);
+    //     if (params.find("name") != params.end()) {
+    //         name = params["name"];
+    //     }
+    // } else if (method == "POST") {
+    //     int contentLength = stoi(getenv("CONTENT_LENGTH"));
+    //     string postData(contentLength, ' ');
+    //     cin.read(&postData[0], contentLength);
+    //     auto params = parseQueryString(postData);
+    //     if (params.find("name") != params.end()) {
+    //         name = params["name"];
+    //     }
+    // }
+
+      // Read the contents of the style sheet file
+      ifstream styleSheetFile("./styles.css");
+      string styleSheetContent((istreambuf_iterator<char>(styleSheetFile)), istreambuf_iterator<char>());
+      styleSheetFile.close();
+
+      // Generate the HTML code
+      string htmlCode = R"(<!DOCTYPE html>
     <html lang="en">
       <head>
       <!-- Document Metadata -->
@@ -29,43 +85,9 @@ int main() {
       <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
       <!-- Page Title -->
-      <title>Elxtra Motors</title>
+      <title>Contact us - Elxtra</title>
       </head>
       <body>
-<<<<<<< HEAD
-      <!-- Navbar -->
-      <header id="navbar" class="animate fixed-top navbar navbar-expand-md navbar-dark fade-down">
-          <div class="container-fluid">
-              <a class="navbar-brand d-flex gap-3 align-items-center" href="./index.cgi">
-                  <img src="https://scontent.fmnl9-3.fna.fbcdn.net/v/t1.15752-9/450574779_820070233598209_5547379444503085753_n.png?_nc_cat=104&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeGCL7NnXUKoqxcaJEGWHvPYg0tBM1PjUZuDS0EzU-NRm7X0q5jk79pwhZnPTHinMxHk0BRUU6dSFOpXR6y4Zs6o&_nc_ohc=hQLcWxI2vNkQ7kNvgEdpQpd&_nc_ht=scontent.fmnl9-3.fna&oh=03_Q7cD1QGi2ixXMwmdWUXjErCioNdXkHryhhdrNwiz3gJ54LEjlw&oe=66C13C8A" alt="" width="30" height="24" class="d-inline-block align-text-top">
-                  <h1 class="display-4 fs-4 m-3">Elxtra</h1>
-              </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <nav class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                  <a class="nav-link p-0 m-3" href="./index.cgi">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link p-0 m-3 active" aria-current="page" href="./aboutus.cgi">About Us</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link p-0 m-3" href="./contactus.cgi" tabindex="-1" aria-disabled="true">Contact Us</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link p-0 m-3" href="./faqs.cgi" tabindex="-1" aria-disabled="true">FAQs</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link p-0 m-3" href="./carmodels.cgi" tabindex="-1" aria-disabled="true">Car Models</a>
-                </li>
-              </ul>
-              <div class="d-flex">
-                <a href="./login.cgi" class="btn m-3 btn-outline-primary text-light fw-bold border-light">Login</a>
-              </div>
-            </nav>
-=======
       <header id="navbar" class="fixed-top navbar navbar-expand-md navbar-dark fade-down">
         <div class="container-fluid">
           <a class="navbar-brand d-flex gap-3 align-items-center" href="#">
@@ -78,13 +100,13 @@ int main() {
           <nav class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-            <a class="nav-link p-0 m-3 active" aria-current="page" href="./index.cgi">Home</a>
+            <a class="nav-link p-0 m-3" href="./index.cgi">Home</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link p-0 m-3" href="./aboutus.cgi">About Us</a>
+            <a class="nav-link p-0 m-3" aria-current="page" href="./aboutus.cgi">About Us</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link p-0 m-3" href="./contactus.cgi" tabindex="-1" >Contact Us</a>
+            <a class="nav-link p-0 m-3 active" href="#" tabindex="-1" aria-disabled="./contactus.cgi">Contact Us</a>
             </li>
             <li class="nav-item">
             <a class="nav-link p-0 m-3" href="#" tabindex="-1" aria-disabled="true">FAQs</a>
@@ -95,85 +117,70 @@ int main() {
           </ul>
           <div class="d-flex">
             <a class="btn m-3 btn-outline-primary text-light fw-bold border-light">Login</a>
->>>>>>> ef5bb683e98fa665207c5d28372383635a4bd823
           </div>
+          </nav>
+        </div>
       </header>
-      <main>
+           <main>
         <!-- Hero Section -->
-        <section class="min-vh-100 cover">
-          <section class="darkener boundary py-5 w-100 d-flex align-items-center justify-content-center">
+          <section class="cover2">
+          <section class="darkener boundary2 py-5 w-100 d-flex align-items-center justify-content-center">
             <section class="container">
               <section class="row">
                 <section class="col-sm-8 fade-left">
-                  <h2 class="display-3 text-light">Drive the Future with Elxtra Motors</h2>
-                  <p class="lead text-light">At Elxtra Motors, we are redefining the automotive industry with our state-of-the-art electric vehicles. Our commitment to innovation and elegance sets us apart, offering you a driving experience like no other. Discover the future of transportation today with Elxtra.</p>
-                  <a href="" class="btn btn-light text-danger fw-bold">Learn More</a>
-                </section>
-                <section class="col-sm-4">
+                  <h2 class="display-3 text-light mt-5">Contact us</h2>
                 </section>
               </section>
             </section>
           </section>
-          <div class="arrow d-none d-sm-flex" onclick='window.scrollBy(50, window.innerHeight)'>
-          </div>
         </section>
-        <section class="bg-dark">
-          <section class="container w-100 text-center overflow-hidden position-relative py-2 d-flex gap-5 align-items-center justify-content-center">
-            <h2 class="h2 text-light m-auto">Elxtra</h2>
-            <h2 class="h2 text-light m-auto">Elxtra</h2>
-            <h2 class="h2 text-light m-auto">Elxtra</h2>
-            <h2 class="h2 text-light m-auto">Elxtra</h2>
-            <h2 class="h2 text-light m-auto">Elxtra</h2>
-          </section>
-        </section>
-        <section id="sticky-header" class="container-fluid py-2 text-center border-top border-5 border-bottom border-light">
-          <h2><a href="#featured" class="text-light">Check Out Our Latest Innovations</a></h2>
-         </section>
-        <!-- Featured Content -->
-        <section id="featured" class="container-fluid">
-        <section class="row">
-          <section class="col-lg-5 py-5 bg-dark border-5 rounded-circle rounded-bottom border-light">
-          <section class="sticky-sm-top pos text-white text-center d-flex flex-column align-items-center justify-content-center">
-            <h2 class="display-4 m-0 h1">Advanced Battery System</h2>
-          </section>
-          </section>
-          <section class="col-lg-7 p-0 hello battery">
-          <section class="h-100 d-flex flex-column p-md-5 p-2 text-light">
-            <h2 class="display-4">Advanced Battery System</h2>
-            <p class="lead">At Elextra Motors, we are committed to pushing the boundaries of electric vehicle technology. Our latest battery system exemplifies this commitment by offering an impressive combination of extended range and rapid charging capabilities. Here's how we're revolutionizing your driving experience:</p>
-            <ul>
-              <li>
-                Extended Range: Our state-of-the-art battery technology allows you to travel further on a single charge, reducing the need for frequent recharging stops. Whether you're commuting to work or embarking on a long-distance journey, Elextra's advanced batteries ensure you can reach your destination with ease.
-              </li>
-              <li>
-                Faster Charging Times: We understand the importance of minimizing downtime. That's why our battery system is designed for ultra-fast charging, allowing you to get back on the road quicker than ever before. Our network of high-speed charging stations further enhances this convenience, making recharging as effortless as possible.
-              </li>
-              <li>
-                Enhanced Efficiency: By optimizing energy consumption and storage, our batteries deliver superior performance and longevity. This means fewer replacements and a more sustainable driving experience.
-              </li>
-              <li>
-                Safety and Reliability: Safety is paramount at Elextra Motors. Our batteries are rigorously tested to ensure they meet the highest safety standards, providing you with peace of mind on every journey.
-              </li>
-            </ul>
-          </section>
-          </section>
-        </section>
-        <!-- Activity 2 -->
-        <section class="row">
-          <section class="col-lg-5 py-5 bg-dark">
-          <section class="sticky-sm-top pos text-white text-center d-flex flex-column align-items-center justify-content-center">
-            <h2 class="display-4 m-0 h1">Autonomous Driving</h2>
-          </section>
-          </section>
-          <section class="col-lg-7 p-0 hello">
-          <section class="bg-light d-flex flex-column p-md-5 p-2">
-            <h2 class="display-4">Activity 2</h2>
-            <p class="lead">This is the secoaScript Summer Class.</p>
-          </section>
-          </section>
-        </section>
-        </section>
-      </main>
+      <!-- Contact Us Section -->
+      <section class="container py-5 text-light">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="contact-us img-container" style="background-image: url('https://ideogram.ai/assets/image/lossless/response/OynpBNaJTjSOaho64xwgsA'); height: 300px; background-size: cover; background-position: center;"></div>
+    </div>
+    <div class="col-md-6 content-container">
+      <div class="contact-info">
+        <h2 class="text-light">Contact Us</h2>
+        <p class="text-light">We are here to help you with any inquiries you may have. Feel free to reach out to us through the following contact details:</p>
+        <h4 class="text-light">Office Address:</h4>
+        <p class="text-light">Unit 203, 2nd Floor, Makati Corporate Center, Makati City</p>
+        <h4 class="text-light">Phone:</h4>
+        <p class="text-light">+63 912 345 6789</p>
+        <h4 class="text-light">Email:</h4>
+        <p class="text-light">info@elxtra.com</p>
+        <div class="contact-details">
+          <h4 class="text-light">Office Hours:</h4>
+          <p class="text-light">Monday to Friday: 9:00 AM - 6:00 PM</p>
+          <p class="text-light">Saturday: 9:00 AM - 12:00 PM</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+    <!-- Message Us Section -->
+<section class="py-5 bg-dark message-us"  style="background-image: url('https://ideogram.ai/assets/image/lossless/response/7D9nJ50qT5-kEtnUp_iHrA'); background-size: cover; background-position: center;">
+ <div class="container">
+            <h2 class="text-light">Message Us</h2>
+            <form>
+                <div class="mb-3">
+                    <p class="text-light">Name</p>
+                    <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                </div>
+                <div class="mb-3">
+                      <p class="text-light">Email</p>
+                    <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                </div>
+                <div class="mb-3">
+                    <p class="text-light">Message</p>
+                    <textarea class="form-control" id="message" rows="4" placeholder="Enter your message"></textarea>
+                </div>
+                <button type="submit" class="btn btn-light text-danger fw-bold">Submit</button>
+            </form>
+        </div>
+</section>
+    </main>
       <footer class="">
         <section class="w-100 container pt-5 pb-3">
           <section class="d-flex flex-column flex-sm-row align-items-center justify-content-center">
@@ -184,13 +191,13 @@ int main() {
               <nav>
                 <ul class="d-md-flex p-0 m-0">
                   <li class="nav-item">
-                  <a class="nav-link p-0 m-3 text-light active" aria-current="page" href="/">Home</a>
+                  <a class="nav-link p-0 m-3 text-light" href="/">Home</a>
                   </li>
                   <li class="nav-item">
-                  <a class="nav-link p-0 m-3 text-light" href="#">About Us</a>
+                  <a class="nav-link p-0 m-3 text-light" aria-current="page" href="#">About Us</a>
                   </li>
                   <li class="nav-item">
-                  <a class="nav-link p-0 m-3 text-light" href="#" tabindex="-1" aria-disabled="true">Contact Us</a>
+                  <a class="nav-link p-0 m-3 text-light active" href="#" tabindex="-1" aria-disabled="true">Contact Us</a>
                   </li>
                   <li class="nav-item">
                   <a class="nav-link p-0 m-3 text-light" href="#" tabindex="-1" aria-disabled="true">FAQs</a>
@@ -304,8 +311,8 @@ int main() {
       </body>
     </html>)";
 
-    // Print the HTML code
-    cout << htmlCode;
+      // Print the HTML code
+      cout << htmlCode;
 
     return 0;
 }

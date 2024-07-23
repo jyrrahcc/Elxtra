@@ -19,6 +19,8 @@ private:
     string features;
     string color;
     string imageUrl;
+    string originUrl;
+    string interiorUrl;
     int year;
     double price; // in PHP
     double batteryCapacity; // in kWh
@@ -31,13 +33,142 @@ private:
 public:
     // Constructor
     Car(const string& mdl, const string& t, const string& desc,
-        const string& feat, const string& col, const string& imgUrl, int yr, double pr,
+        const string& feat, const string& col, const string& imgUrl, const string& orgUrl, const string& itrUrl, int yr, double pr,
         double batCap, double rng, double chargeTime, double mPower,
         double accel, double tSpeed)
         : model(mdl), tag(t), description(desc), features(feat), color(col), imageUrl(imgUrl),
-        year(yr), price(pr), batteryCapacity(batCap), range(rng),
+        originUrl(orgUrl), interiorUrl(itrUrl), year(yr), price(pr), batteryCapacity(batCap), range(rng),
         chargingTime(chargeTime), motorPower(mPower), acceleration(accel),
         topSpeed(tSpeed) {}
+
+    // Member function to display car card
+    void displayCard() const {
+        cout << "<a href=\"?model=" << tag << "\" class=\"row d-flex align-items-center card-display justify-content-center p-4 w-100 text-light position-relative\">";
+        cout << "<section class=\"text-shadow z-index animate col-lg-4 d-flex justify-content-center flex-column fade-left\">";
+        cout << "<h3 class=\"display-5\">" << model << "</h3>";
+        cout << "<p class=\"fw-bold fs-4\">" << fixed << setprecision(2) << "₱" << price << "</p>";
+        cout << "<p class=\"lead\">" << description << "</p>";
+        cout << "</section>";
+        cout << "<section class=\"col-lg-8 d-flex align-items-center z-index\">";
+        cout << "<img src=\"" << imageUrl << "\" class=\"animate fade-right card-img\" alt=\"" << model << "\">";
+        cout << "</section>";
+        cout << "<section class=\"card-circle border border-light animate fade-up bg-dark\"> </section>";
+        cout << "</a>";
+    }
+
+    // Member function to display car details
+    void displayDetails() const {
+        string priceStr = "₱" + to_string(price);
+        size_t decimalPos = priceStr.find(".");
+        if (decimalPos != string::npos && priceStr.length() - decimalPos > 3) {
+            priceStr = priceStr.substr(0, decimalPos + 3);
+        }
+        cout << "<div class=\"container-fluid bg-dark py-3 text-light\">";
+            cout << "<div class=\"row\">";
+                cout << "<div class=\"col-md-7 d-flex align-items-center justify-content-center\">";
+                cout << "<div id=\"carouselExampleIndicators\" class=\"shadow rounded-3 rounded carousel slide bg-light\" data-bs-ride=\"carousel\">";
+                cout << "<ol class=\"carousel-indicators\">";
+                cout << "<li data-bs-target=\"#carouselExampleIndicators\" data-bs-slide-to=\"0\" class=\"active\"></li>";
+                cout << "<li data-bs-target=\"#carouselExampleIndicators\" data-bs-slide-to=\"1\"></li>";
+                cout << "</ol>";
+                cout << "<div class=\"carousel-inner\">";
+                cout << "<div class=\"carousel-item active\">";
+                cout << "<img src=\"" << originUrl << "\" class=\"d-block w-100\" alt=\"" << model << "\" style=\"height: 100%;\">";
+                cout << "</div>";
+                cout << "<div class=\"carousel-item\">";
+                cout << "<img src=\"" << interiorUrl << "\" class=\"d-block w-100\" alt=\"Interior\" style=\"height: 100%;\">";
+                cout << "</div>";
+                cout << "</div>";
+                cout << "<a class=\"carousel-control-prev\" href=\"#carouselExampleIndicators\" role=\"button\" data-bs-slide=\"prev\">";
+                cout << "<span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"></span>";
+                cout << "<span class=\"visually-hidden\">Previous</span>";
+                cout << "</a>";
+                cout << "<a class=\"carousel-control-next\" href=\"#carouselExampleIndicators\" role=\"button\" data-bs-slide=\"next\">";
+                cout << "<span class=\"carousel-control-next-icon\" aria-hidden=\"true\"></span>";
+                cout << "<span class=\"visually-hidden\">Next</span>";
+                cout << "</a>";
+                cout << "</div>";
+            cout << "</div>";
+            cout << "<div class=\"col-md-5 p-3 d-flex justify-content-center flex-column\">";
+                cout << "<h2 class=\"display-4\">" << model << "</h2>";
+                cout << "<p class=\"lead\">" << description << "</p>";
+                cout << "<p class=\"fs-5 fw-bold\">" << priceStr << "</p>";
+                cout << "<p><strong>Color:</strong> " << color << "</p>";
+                cout << "<p><strong>Year:</strong> " << year << "</p>";
+                cout << "<p><strong>Features:</strong> " << features << "</p>";
+                cout << "<a href=\"./carmodels.cgi\" class=\"mb-3 btn btn-outline-danger text-light fw-bold\">Check Other Models</a>";
+                cout << "<a href=\"./contactus.cgi\" class=\"btn btn-outline-danger bg-light text-dark fw-bold\">Order Now</a>";
+            cout << "</div>";
+            cout << "</div>";
+        cout << "</div>";
+        cout << "<div class=\"w-100 sandp py-5 text-light\">";
+        cout << "<div class=\"container\">";
+        cout << "<div class=\"row\">";
+        cout << "<div class=\"col-md-6 p-3\">";
+        cout << "<h4 class=\"fw-bold\">Specifications</h4>";
+        cout << "<div class=\"card mb-3\">";
+        cout << "<div class=\"card-body d-flex flex-row-reverse\">";
+        cout << "<i class=\"fas fa-battery-half fs-3 ms-3\"></i>";
+        cout << "<div class=\"d-flex flex-grow-1 justify-content-between\">";
+        cout << "<h5 class=\"card-title\">Battery Capacity</h5>";
+        cout << "<p class=\"card-text\">" << batteryCapacity << " kWh</p>";
+        cout << "</div>";
+        cout << "</div>";
+        cout << "</div>";
+        cout << "<div class=\"card mb-3\">";
+        cout << "<div class=\"card-body d-flex flex-row-reverse\">";
+        cout << "<i class=\"fas fa-tachometer-alt fs-3 ms-3\"></i>";
+        cout << "<div class=\"d-flex flex-grow-1 justify-content-between\">";
+        cout << "<h5 class=\"card-title\">Range</h5>";
+        cout << "<p class=\"card-text\">" << range << " kilometers</p>";
+        cout << "</div>";
+        cout << "</div>";
+        cout << "</div>";
+        cout << "<div class=\"card mb-3\">";
+        cout << "<div class=\"card-body d-flex flex-row-reverse\">";
+        cout << "<i class=\"fas fa-clock fs-3 ms-3\"></i>";
+        cout << "<div class=\"d-flex flex-grow-1 justify-content-between\">";
+        cout << "<h5 class=\"card-title\">Charging Time</h5>";
+        cout << "<p class=\"card-text\">" << chargingTime << " hours</p>";
+        cout << "</div>";
+        cout << "</div>";
+        cout << "</div>";
+        cout << "</div>";
+        cout << "<div class=\"col-md-6 p-3\">";
+        cout << "<h4 class=\"fw-bold\">Performance</h4>";
+        cout << "<div class=\"card mb-3\">";
+        cout << "<div class=\"card-body d-flex flex-row-reverse\">";
+        cout << "<i class=\"fas fa-bolt fs-3 ms-3\"></i>";
+        cout << "<div class=\"d-flex flex-grow-1 justify-content-between\">";
+        cout << "<h5 class=\"card-title\">Motor Power</h5>";
+        cout << "<p class=\"card-text\">" << motorPower << " kW</p>";
+        cout << "</div>";
+        cout << "</div>";
+        cout << "</div>";
+        cout << "<div class=\"card mb-3\">";
+        cout << "<div class=\"card-body d-flex flex-row-reverse\">";
+        cout << "<i class=\"fas fa-stopwatch fs-3 ms-3\"></i>";
+        cout << "<div class=\"d-flex flex-grow-1 justify-content-between\">";
+        cout << "<h5 class=\"card-title\">Acceleration</h5>";
+        cout << "<p class=\"card-text\">" << acceleration << " seconds (0 to 60 kph)</p>";
+        cout << "</div>";
+        cout << "</div>";
+        cout << "</div>";
+        cout << "<div class=\"card mb-3\">";
+        cout << "<div class=\"card-body d-flex flex-row-reverse\">";
+        cout << "<i class=\"fas fa-tachometer-alt fs-3 ms-3\"></i>";
+        cout << "<div class=\"d-flex flex-grow-1 justify-content-between\">";
+        cout << "<h5 class=\"card-title\">Top Speed</h5>";
+        cout << "<p class=\"card-text\">" << topSpeed << " kph</p>";
+        cout << "</div>";
+        cout << "</div>";
+        cout << "</div>";
+        cout << "</div>";
+        cout << "</div>";
+        cout << "</div>";
+        cout << "</div>";
+        cout << "</div>";
+    }
 
     // Getters
     string getModel() const { return model; }
@@ -46,6 +177,8 @@ public:
     string getFeatures() const { return features; }
     string getColor() const { return color; }
     string getImageUrl() const { return imageUrl; }
+    string getOriginUrl() const { return originUrl; }
+    string getInteriorUrl() const { return interiorUrl; }
     int getYear() const { return year; }
     double getPrice() const { return price; }
     double getBatteryCapacity() const { return batteryCapacity; }
@@ -103,14 +236,10 @@ int main() {
     ifstream styleSheetFile("./styles.css");
     string styleSheetContent((istreambuf_iterator<char>(styleSheetFile)), istreambuf_iterator<char>());
     styleSheetFile.close();
-
+    // Car database
     vector<Car> carDatabase;
-    string mainContent;
+    // Model not found content
     string modelNotFoundContent = R"(<section class="container py-5">
-        <form method="post" class="input-group mb-3">
-            <input class="form-control bg-dark shadow-light text-light" type="search" placeholder="Search Model..." name="model" aria-label="Search" required>
-            <button class="btn btn-dark border border-light text-light input-group-text" type="submit"><i class="fas fa-search"></i></button>
-        </form>
         <h2 class="display-4 text-light">Model not found.</h2>
         <a href="./carmodels.cgi" class="btn btn-light text-dark">Back to Car Models</a>
     </section>)";
@@ -121,36 +250,39 @@ int main() {
         "The ZenithEon represents a new era of electric mobility, blending elegant design with cutting-edge technology.",
         "Autopilot, Full Self-Driving Capability, Over-the-Air Software Updates, Premium Connectivity",
         "Pearl White", "https://scontent-mnl1-2.xx.fbcdn.net/v/t1.15752-9/451011914_790471106591407_5712580914768615546_n.png?_nc_cat=102&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeHAlzGUpIotRvoTiCDaZAOmowF4oWVbLx6jAXihZVsvHqIWeb1yw6Glrn9Pgyh0EQUeSeO5tynT1qEpH1jMiGg7&_nc_ohc=vxFmQRl4LV8Q7kNvgHe2TJj&_nc_ht=scontent-mnl1-2.xx&oh=03_Q7cD1QGU01F5Pe2mWXAN4tfv4FY8W71ViTYwOiRKoCAH9jDWnA&oe=66C5B5D1",
-        2023, 1500000.0, 80.0, 400.0, 8.0, 200.0, 6.0, 180.0);
+        "https://scontent.fmnl9-1.fna.fbcdn.net/v/t1.15752-9/452149569_1019766789734981_4554600585309120314_n.png?_nc_cat=111&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeHUYAOozcQCUzK0WbclKVtOtUYc8BHNpda1RhzwEc2l1nIXHnFFNNsxaZVpuezafLK7RWSCZDa855ODh-nMclYn&_nc_ohc=7hP7cZ8y5FYQ7kNvgEwzL91&_nc_ht=scontent.fmnl9-1.fna&oh=03_Q7cD1QFvnWp2v_vJczq_M0D3pUw3HUkIrRABpGdiaz2N1uKrWg&oe=66C6AF83", 
+        "https://scontent.fmnl9-2.fna.fbcdn.net/v/t1.15752-9/451430229_505213985308507_609299101154432417_n.png?_nc_cat=101&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeHfEuqs4DyTHe5-k7agQPa8PuQ7jukneMA-5DuO6Sd4wPTqOCmDS44dqQulInUz6T2HicQHCvwJ3R0iHNCO9qPZ&_nc_ohc=ZHIW96nO74AQ7kNvgHUUMpw&_nc_ht=scontent.fmnl9-2.fna&oh=03_Q7cD1QH6oPEMNfUAPsI8EekV761Ix-O-wr4Ee5rKjSHHfh-UYQ&oe=66C67DE2", 2023, 1500000.0, 80.0, 400.0, 8.0, 200.0, 6.0, 180.0);
 
     // QuantumX
     carDatabase.emplace_back("QuantumX", "quantumx",
         "The QuantumX redefines performance and luxury in the electric vehicle segment.",
         "Autopilot, Premium Sound System, Adaptive Cruise Control, Wireless Charging",
         "Midnight Black", "https://scontent-mnl1-2.xx.fbcdn.net/v/t1.15752-9/451277419_2066723507077182_1977782340440860320_n.png?_nc_cat=103&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeGUKhzHpdjEN14IKX4MP9NhUIATlAc-QPdQgBOUBz5A99e6jA_GIObDPJrrhLXV41Gf_zYMAR2RRn-DifOuyjgI&_nc_ohc=N6C4Vm1TDSMQ7kNvgEiwEdY&_nc_ht=scontent-mnl1-2.xx&oh=03_Q7cD1QGOxm0y8g8k__HK-R5RNE_JnkjhQHZ5z6OojFWM0QQJOw&oe=66C5E660",
-        2024, 2000000.0, 100.0, 500.0, 5.0, 300.0, 4.0, 220.0);
+        "https://scontent.fmnl9-2.fna.fbcdn.net/v/t1.15752-9/452005070_3660568064158719_1032655168218171448_n.png?_nc_cat=107&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeGuVjHdIvrwDneWHeorc9Xp2I25vgIRROfYjbm-AhFE51NJaiZ46iwHUVLGWuTmHrgHQnp2XsfDPH3k4VGIzHbb&_nc_ohc=BTwJmF-fdCsQ7kNvgEC4qR_&_nc_ht=scontent.fmnl9-2.fna&oh=03_Q7cD1QGBykqdXf6U9Fm-LTLmh3WThNot1M7eazkAzUbID4dPlQ&oe=66C69B85", 
+        "https://scontent.fmnl9-4.fna.fbcdn.net/v/t1.15752-9/451696834_1125964695158533_6502086880406349766_n.png?_nc_cat=108&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeEN8LZUHjiNGYomBwgerXn6sD4ho7lSqEOwPiGjuVKoQ3Ln4R8aeSyUNviDJbyDYMdJq1XzHI-lvOBRRaOy4hvg&_nc_ohc=bxDXGB0Q7Y4Q7kNvgHWbfKB&_nc_ht=scontent.fmnl9-4.fna&oh=03_Q7cD1QHOSp8Xv158w5CMuU14v0wNlu0GZv6zUniMCMY2NJ0efw&oe=66C6A36B", 2024, 2000000.0, 100.0, 500.0, 5.0, 300.0, 4.0, 220.0);
 
     // Luminova
     carDatabase.emplace_back("Luminova", "luminova",
         "The Luminova combines elegance with sustainability.",
         "Regenerative Braking, Panoramic Sunroof, Voice-Activated Controls",
         "Lunar Gray", "https://scontent-mnl1-2.xx.fbcdn.net/v/t1.15752-9/451439136_996205265569745_5457821148225663634_n.png?_nc_cat=105&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeFFKor_dEE9unA1JO1ONuGxYq12CdfhMm9irXYJ1-Eyb_I6ArNe1H1zaCWbY151lE_luMZOXxospd7FMZBdugBx&_nc_ohc=37PLU_4UPewQ7kNvgH0oucZ&_nc_ht=scontent-mnl1-2.xx&oh=03_Q7cD1QFRVLdBMpDwnZMfhWHFUutjl2gt_Y1oCg0DJc70jJ1Drg&oe=66C5B799",
-        2023, 1200000.0, 60.0, 300.0, 6.0, 150.0, 7.0, 160.0);
+        "https://scontent.fmnl9-2.fna.fbcdn.net/v/t1.15752-9/451323495_980882510498645_6282516183590098653_n.png?_nc_cat=103&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeF6IocKd6cEDRFzsZZaL4jDROn-X2QTXrhE6f5fZBNeuHyyrKBIiusxajbbWOnMopnNVh3uThOw49CobGF0I70Q&_nc_ohc=q_ZMC5SuPKYQ7kNvgHu-sk_&_nc_ht=scontent.fmnl9-2.fna&oh=03_Q7cD1QHgcCYr4BxrM9AgPA4FZjbhGcTpcsrbKsCU191scHNjwA&oe=66C6AC5A", 
+        "https://scontent.fmnl9-3.fna.fbcdn.net/v/t1.15752-9/449903868_966513365252907_4497279307927428392_n.png?_nc_cat=104&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeEKW95hOp52422FDJyK-MDA_OXs3qO3MkL85ezeo7cyQkE4rW3eMoj5rq3qDlLw8qY9_9a164ZfqFlJlLVHDldp&_nc_ohc=s3wnXNsFMhoQ7kNvgHwuJT4&_nc_ht=scontent.fmnl9-3.fna&oh=03_Q7cD1QER1gAOJBAzUsITOPi_IjS0ENDiMHyPwASEwZ_CddipxQ&oe=66C6908C", 2023, 1200000.0, 60.0, 300.0, 6.0, 150.0, 7.0, 160.0);
 
     // Nextron
     carDatabase.emplace_back("Nextron", "nextron",
         "The Nextron is a versatile electric crossover designed for practicality and efficiency.",
         "Lane-Keeping Assist, Touchscreen Infotainment, Rearview Camera",
         "Electric Blue", "https://scontent-mnl1-2.xx.fbcdn.net/v/t1.15752-9/451390842_884947063460453_415468250194106051_n.png?_nc_cat=103&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeHRcjLwf5HOJthxFdUSIUjtGLiRWIK0KYsYuJFYgrQpi-mH2PYcClx3bbPKa6loZ99ycCela5VcKz_zGj3jhQfL&_nc_ohc=Sg_Mad0t43IQ7kNvgHLEWg9&_nc_ht=scontent-mnl1-2.xx&oh=03_Q7cD1QHairuJdaNMj5JEAXi5HZL8_WLrkP55-umqzDv4OChYyQ&oe=66C5E4E6",
-        2022, 1000000.0, 50.0, 250.0, 4.0, 120.0, 8.0, 150.0);
+        "https://scontent.fmnl9-4.fna.fbcdn.net/v/t1.15752-9/451446924_472374362080556_4382954125856774196_n.png?_nc_cat=106&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeEcWjJxPiVo24QzOLaXip-AmtWinT7K4wKa1aKdPsrjAuqoiPSvlxQ6ptQNIgbR4a9wdQjnrkHyWzrVuXHm5Dh1&_nc_ohc=XhkOEz18Za4Q7kNvgF_O8jY&_nc_ht=scontent.fmnl9-4.fna&oh=03_Q7cD1QE6LaB-8V6IT1nkCW0Dd8YH5qKt_3pZAnhQLWqXH74Zfg&oe=66C69843", 
+        "https://scontent.fmnl9-4.fna.fbcdn.net/v/t1.15752-9/451622259_1894112094343955_2371808051181805584_n.png?_nc_cat=108&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeG7RoxsSzEINUtyTRox0IQ62ykjdw2_44HbKSN3Db_jgU5aGdIe72p9fty3JZTlGb6ZRFMVWlA8u-mM-a00ZuOA&_nc_ohc=cZaIseKgQL4Q7kNvgGqiIUV&_nc_ht=scontent.fmnl9-4.fna&oh=03_Q7cD1QEVUYbddmEPN6SeMwOMdeRusXxLAqV5E2UDBPxKETXTZw&oe=66C689D5", 2022, 1000000.0, 50.0, 250.0, 4.0, 120.0, 8.0, 150.0);
 
     // Print the HTTP header
     cout << "Content-Type: text/html\r\n\r\n";
 
     string requestMethod = getenv("REQUEST_METHOD");
 
-    // Get and Post Methods with search functionality
-
+    // Print the HTML content
     cout << R"(<!DOCTYPE html>
     <html lang="en">
         <head>
@@ -224,93 +356,95 @@ int main() {
                 </section>
             </section>
         </section>)";
-        
+    // Display car model details or all car models page for Get Method
     if (requestMethod == "GET") {
         string queryString = getenv("QUERY_STRING");
         map<string, string> queryParams = parseQueryString(queryString);
+        // Display car model details page
         if (queryParams.find("model") != queryParams.end()) {
             string modelTag = queryParams["model"];
             bool found = false;
             for (const Car& car : carDatabase) {
                 if (car.getTag() == modelTag) {
                     found = true;
-                    cout << "<h1>" << car.getModel() << "</h1>";
-                    cout << "<p><strong>Description:</strong> " << car.getDescription() << "</p>";
-                    cout << "<p><strong>Features:</strong> " << car.getFeatures() << "</p>";
-                    cout << "<p><strong>Color:</strong> " << car.getColor() << "</p>";
-                    cout << "<p><strong>Year:</strong> " << car.getYear() << "</p>";
-                    cout << "<p><strong>Price:</strong> $" << car.getPrice() << "</p>";
-                    cout << "<p><strong>Battery Capacity:</strong> " << car.getBatteryCapacity() << " kWh</p>";
-                    cout << "<p><strong>Range:</strong> " << car.getRange() << " miles</p>";
-                    cout << "<p><strong>Charging Time:</strong> " << car.getChargingTime() << " hours</p>";
-                    cout << "<p><strong>Motor Power:</strong> " << car.getMotorPower() << " kW</p>";
-                    cout << "<p><strong>Acceleration:</strong> " << car.getAcceleration() << " seconds (0 to 60 mph)</p>";
-                    cout << "<p><strong>Top Speed:</strong> " << car.getTopSpeed() << " mph</p>";
+                    car.displayDetails();
                     break;
                 }
             }
+            // Display model not found content if the model is not in the database
             if (!found) {
                 cout << modelNotFoundContent;
             }
-        } else {
-            cout << R"(<section class="container py-5">
+        }
+        // Display all car models page 
+        else {
+            cout << R"(<section class="container py-5 text-light">
+                <h2 class="display-5 text-shadow">Discover the Future of Driving with Elxtra</h2>
+                <p class="lead">Welcome to Elxtra, where cutting-edge technology meets unparalleled performance. Our innovative car models are designed to provide an exceptional driving experience that exceeds expectations. Whether you're looking for speed, luxury, efficiency, or versatility, Elxtra has the perfect car to match your lifestyle. Explore our range of state-of-the-art electric vehicles and join us on the journey to a sustainable and exhilarating future.</p>
                 <section class="d-flex align-items-center justify-content-center gap-3 flex-wrap">)";
             for (const Car& car : carDatabase) {
-                    cout << "<a href=\"?model=" << car.getTag() << "\" class=\"row d-flex align-items-center card-display justify-content-center p-4 w-100 text-light position-relative\">";
-                        cout << "<section class=\"z-index animate col-lg-4 d-flex justify-content-center flex-column fade-left\">";
-                            cout << "<h3 class=\"display-5\">" << car.getModel() << "</h3>";
-                            cout << "<p class=\"fw-bold fs-4\">" << fixed << setprecision(2) << "₱" << car.getPrice() << "</p>";
-                            cout << "<p class=\"lead\">" << car.getDescription() << "</p>";
-                        cout << "</section>";
-                        cout << "<section class=\"col-lg-8 d-flex align-items-center z-index\">";
-                        cout << "<img src=\"" << car.getImageUrl() << "\" class=\"animate fade-right card-img\" alt=\"" << car.getModel() << "\">";
-                        cout << "</section>";
-                        cout << "<section class=\"card-circle animate fade-up bg-dark\"> </section>";
-                    cout << "</a>";
+                car.displayCard();
             }
             cout << "</section>";
             cout << "</section>";
         }
-    } else if (requestMethod == "POST") {
+    } 
+    // Display search results page for Post Method
+    else if (requestMethod == "POST") {
         string contentLengthStr = getenv("CONTENT_LENGTH");
+        // Check if the content length is not empty
         if (!contentLengthStr.empty()) {
             int contentLength = stoi(contentLengthStr);
             string postBody;
             postBody.resize(contentLength);
             cin.read(&postBody[0], contentLength);
             map<string, string> postParams = parseQueryString(postBody);
+            // Cbecks if the search query is not empty
             if (postParams.find("model") != postParams.end()) {
                 string modelTag = postParams["model"];
                 bool found = false;
+                cout << R"(<section class="container py-5">
+                <section class="d-flex align-items-center justify-content-center gap-3 flex-wrap">
+                <h2 class="display-5 text-light animate fade text-left">Search result/s for )" << modelTag << R"(...</h2>)";
                 for (const Car& car : carDatabase) {
                     if (toLower(car.getTag()).find(toLower(modelTag)) != string::npos) {
                         found = true;
-                        cout << "<li><a href=\"?model=" << car.getTag() << "\">" << car.getModel() << "</a></li>";
+                        car.displayCard();
                     }
                 }
+                // Display model not found content if there is no car model that matches the search query
                 if (!found) {
                     cout << modelNotFoundContent;
                 }
-            } else {
-                cout << modelNotFoundContent;
+                cout << "</section>";
+                cout << "</section>";
+            } 
+            // Display all car models page if the search query is empty
+            else {
+                cout << R"(<section class="container py-5 text-light">
+                <h2 class="display-5 text-shadow">Discover the Future of Driving with Elxtra</h2>
+                <p class="lead">Welcome to Elxtra, where cutting-edge technology meets unparalleled performance. Our innovative car models are designed to provide an exceptional driving experience that exceeds expectations. Whether you're looking for speed, luxury, efficiency, or versatility, Elxtra has the perfect car to match your lifestyle. Explore our range of state-of-the-art electric vehicles and join us on the journey to a sustainable and exhilarating future.</p>
+                <section class="d-flex align-items-center justify-content-center gap-3 flex-wrap">)";
+                for (const Car& car : carDatabase) {
+                    car.displayCard();
+                }
+                cout << "</section>";
+                cout << "</section>";
             }
-        } else {
-            cout << "<h1>Electric Car Models</h1>";
-            cout << "<form method=\"post\">";
-            cout << "<label for=\"search\">Search:</label>";
-            cout << "<input type=\"text\" id=\"search\" name=\"model\">";
-            cout << "<input type=\"submit\" value=\"Submit\">";
-            cout << "</form>";
-            cout << "<ul>";
+        } 
+        // Display all car models page if the content length is empty
+        else {
+            cout << R"(<section class="container py-5 text-light">
+                <h2 class="display-5 text-shadow">Discover the Future of Driving with Elxtra</h2>
+                <p class="lead">Welcome to Elxtra, where cutting-edge technology meets unparalleled performance. Our innovative car models are designed to provide an exceptional driving experience that exceeds expectations. Whether you're looking for speed, luxury, efficiency, or versatility, Elxtra has the perfect car to match your lifestyle. Explore our range of state-of-the-art electric vehicles and join us on the journey to a sustainable and exhilarating future.</p>
+                <section class="d-flex align-items-center justify-content-center gap-3 flex-wrap">)";
             for (const Car& car : carDatabase) {
-                cout << "<li><a href=\"?model=" << car.getTag() << "\">" << car.getModel() << "</a></li>";
+                car.displayCard();
             }
-            cout << "</ul>";
+            cout << "</section>";
+            cout << "</section>";
         }
     }
-     
-        
-        
         cout << R"(</main>
         <!-- Footer Section -->
         <footer>

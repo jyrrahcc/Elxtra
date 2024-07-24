@@ -272,8 +272,8 @@ int main() {
                             <div class="col-md-7">
                                 <div class="card-body d-flex flex-column justify-content-center">
                                     <h5 class="text-light">Cedrick Libao</h5>
-                                  <p class="lead">Chief Operating Officer (COO)</p>
-                                <p class="text-light">John Paul ensures smooth operations across all departments, focusing on efficiency and the highest standards of operational excellence.</p>
+                                  <p class="lead">Chief Marketing Officer (CMO)</p>
+                                <p class="text-light">Cedrick leads the marketing team, crafting strategies to enhance brand presence and reach target audiences. He ensures that the company's messaging is consistent and impactful across all channels.</p>
                                     <p class="text-light">shurigami@gmail.com</p>
                                 </div>
                             </div>

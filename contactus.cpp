@@ -127,6 +127,12 @@ int main() {
 
             <!-- Page Title -->
             <title>Contact Us - Elxtra Motors</title>
+            <style>
+            .accordion-button:focus {
+   box-shadow: 0px 0px 30px 1px rgba(226, 21, 21, 0.995);
+   
+  }
+  </style>
           </head>
       <body>
         <!-- Navbar -->
@@ -177,50 +183,169 @@ int main() {
           </section>
         </section>
       <!-- Contact Us Section -->
-      <section class="container py-5 text-light">
-  <div class="row">
-    <div class="col-md-6">
-      <div class="contact-us img-container" style="background-image: url('https://ideogram.ai/assets/image/lossless/response/OynpBNaJTjSOaho64xwgsA'); height: 300px; background-size: cover; background-position: center;"></div>
-    </div>
-    <div class="col-md-6 content-container">
-      <div class="contact-info">
-        <h2 class="text-light">Contact Us</h2>
-        <p class="text-light">We are here to help you with any inquiries you may have. Feel free to reach out to us through the following contact details:</p>
-        <h4 class="text-light">Office Address:</h4>
-        <p class="text-light">Unit 203, 2nd Floor, Makati Corporate Center, Makati City</p>
-        <h4 class="text-light">Phone:</h4>
-        <p class="text-light">+63 912 345 6789</p>
-        <h4 class="text-light">Email:</h4>
-        <p class="text-light">info@elxtra.com</p>
-        <div class="contact-details">
-          <h4 class="text-light">Office Hours:</h4>
-          <p class="text-light">Monday to Friday: 9:00 AM - 6:00 PM</p>
-          <p class="text-light">Saturday: 9:00 AM - 12:00 PM</p>
+     <section class="container py-5 text-light">
+  <h2 class="animate fade-left">Contact Us</h2>
+  <section class="row">
+    <section class="col-md-6 mb-3 animate fade-left">
+      <p>
+        We are here to help you with any inquiries you may have. Feel free to reach out to us through the following contact details:
+      </p>
+      <h4>Office Address:</h4>
+      <p>Unit 203, 2nd Floor, Makati Corporate Center, Makati City</p>
+      <h4>Phone:</h4>
+      <p>+63 912 345 6789</p>
+      <h4>Email:</h4>
+      <p>info@elxtra.com</p>
+      <div class="contact-details">
+        <h4>Office Hours:</h4>
+        <p>Monday to Friday: 9:00 AM - 6:00 PM</p>
+        <p>Saturday: 9:00 AM - 12:00 PM</p>
+      </div>
+    </section>
+    <section class="col-md-6 d-flex align-items-center justify-content-center">
+      <section class="d-flex align-items-center justify-content-center animate fade-right">
+        <img src="https://ideogram.ai/assets/image/lossless/response/OynpBNaJTjSOaho64xwgsA" class="drop-shadow img-fluid">
+      </section>
+    </section>
+  </section>
+</section>
+<section class="container py-5">
+  <h2 class="animate fade-left text-light">FAQs</h2>
+  <section class="row">
+    <section class="col-12 mb-3 animate fade-left">
+      <p class ="text-light">Find answers to commonly asked questions in our FAQ section.</p>
+      <div class="accordion" id="faqsAccordion">
+        <div class="accordion-item" style="background-color: #343a40; color: white; border-color: #454d55;">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="background-color: #343a40; color: white;">
+              What makes Elxtra Motors different from other electric car manufacturers?
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqsAccordion">
+            <div class="accordion-body" style="background-color: #454d55; color: white;">
+              Elxtra Motors stands out through our commitment to innovation and elegance. We focus on combining cutting-edge technology with sophisticated design to provide a superior driving experience. Our vehicles are engineered for high performance, safety, and sustainability.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item" style="background-color: #343a40; color: white; border-color: #454d55;">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="background-color: #343a40; color: white;">
+              What electric car models does Elxtra Motors offer?
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqsAccordion">
+            <div class="accordion-body" style="background-color: #454d55; color: white;">
+              We offer a range of electric vehicles, including our flagship models such as the ZenithEon and QuantumX. Each model is designed to meet various needs, from everyday commuting to high-performance driving. Visit our Car Models page for detailed information on each vehicle.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item" style="background-color: #343a40; color: white; border-color: #454d55;">
+          <h2 class="accordion-header" id="headingFour">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour" style="background-color: #343a40; color: white;">
+              What is the warranty coverage for Elxtra vehicles?
+            </button>
+          </h2>
+          <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqsAccordion">
+            <div class="accordion-body" style="background-color: #454d55; color: white;">
+              Elxtra Motors offers a comprehensive warranty on all our vehicles, including a 5-year or 60,000-mile warranty on the battery and a 3-year or 36,000-mile warranty on the vehicle’s components. 
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item" style="background-color: #343a40; color: white; border-color: #454d55;">
+          <h2 class="accordion-header" id="headingFive">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive" style="background-color: #343a40; color: white;">
+              How can I charge my Elxtra vehicle?
+            </button>
+          </h2>
+          <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqsAccordion">
+            <div class="accordion-body" style="background-color: #454d55; color: white;">
+              Elxtra vehicles can be charged at home using a standard home charging station or at public charging stations. We provide a home charging kit with every purchase, and you can find a network of public chargers through our Charging Stations locator.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item" style="background-color: #343a40; color: white; border-color: #454d55;">
+          <h2 class="accordion-header" id="headingSix">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix" style="background-color: #343a40; color: white;">
+              What is the range of Elxtra vehicles on a single charge?
+            </button>
+          </h2>
+          <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#faqsAccordion">
+            <div class="accordion-body" style="background-color: #454d55; color: white;">
+              Our electric vehicles offer impressive ranges. The Luminova, for example, provides up to 300 miles on a full charge, while the Nextron offers up to 350 miles. Range can vary based on driving conditions and usage.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item" style="background-color: #343a40; color: white; border-color: #454d55;">
+          <h2 class="accordion-header" id="headingSeven">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven" style="background-color: #343a40; color: white;">
+              Are there any incentives for purchasing an Elxtra vehicle?
+            </button>
+          </h2>
+          <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#faqsAccordion">
+            <div class="accordion-body" style="background-color: #454d55; color: white;">
+              Yes, depending on your location, you may be eligible for federal and state incentives for purchasing electric vehicles. 
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item" style="background-color: #343a40; color: white; border-color: #454d55;">
+          <h2 class="accordion-header" id="headingNine">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine" style="background-color: #343a40; color: white;">
+              What financing options are available for Elxtra vehicles?
+            </button>
+          </h2>
+          <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#faqsAccordion">
+            <div class="accordion-body" style="background-color: #454d55; color: white;">
+              We offer a range of financing options, including leasing and loan programs through our partner financial institutions. Visit our car loan calculator page to explore your options and apply online.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item" style="background-color: #343a40; color: white; border-color: #454d55;">
+          <h2 class="accordion-header" id="headingTen">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen" style="background-color: #343a40; color: white;">
+              How can I contact Elxtra Motors for support or inquiries?
+            </button>
+          </h2>
+          <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen" data-bs-parent="#faqsAccordion">
+            <div class="accordion-body" style="background-color: #454d55; color: white;">
+              For support or inquiries, you can contact us via our Contact Us page, where you’ll find contact information for our customer service team and local dealerships. You can also reach us by phone or email.
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+    </section>
+  </section>
 </section>
+
     <!-- Message Us Section -->
-<section class="py-5 bg-dark message-us"  style="background-image: url('https://ideogram.ai/assets/image/lossless/response/7D9nJ50qT5-kEtnUp_iHrA'); background-size: cover; background-position: center;">
- <div class="container">
-            <h2 class="text-light">Message Us</h2>
-            <form>
-                <div class="mb-3">
-                    <p class="text-light">Name</p>
-                    <input type="text" class="form-control" id="name" placeholder="Enter your name">
-                </div>
-                <div class="mb-3">
-                      <p class="text-light">Email</p>
-                    <input type="email" class="form-control" id="email" placeholder="Enter your email">
-                </div>
-                <div class="mb-3">
-                    <p class="text-light">Message</p>
-                    <textarea class="form-control" id="message" rows="4" placeholder="Enter your message"></textarea>
-                </div>
-                <button type="submit" class="btn btn-light text-danger fw-bold">Submit</button>
-            </form>
-        </div>
+<section class="w-100 text-light cover4 animate fade-up">
+<section class="message-us">
+  <section class="darkener">
+    <section class="container py-5 d-flex gap-5 flex-column">
+      <section class="row">
+        <section class="col-sm-7 animate fade-left">
+          <h2 class="text-shadow">Message Us</h2>
+          <form>
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name" placeholder="Your Name">
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" placeholder="Your Email">
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label">Message</label>
+              <textarea class="form-control" id="message" rows="5" placeholder="Your Message"></textarea>
+            </div>
+            <div class="d-flex justify-content-start">
+              <a class="btn m-3 btn-outline-primary text-light fw-bold border-light">Send</a>
+            </div>
+          </form>
+        </section>
+      </section>
+    </section>
+  </section>
+</section>
 </section>
     </main>
       <!-- Footer Section -->

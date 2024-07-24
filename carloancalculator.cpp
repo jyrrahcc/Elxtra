@@ -193,11 +193,10 @@ int main() {
     vector<CarDetails> carDetailsDatabase;
 
     // Populate the car details database with the existing car models
-    carDetailsDatabase.emplace_back("ZenithEon", 1500000.0, 3.25);
-    carDetailsDatabase.emplace_back("QuantumX", 2000000.0, 2.5);
-    carDetailsDatabase.emplace_back("Luminova", 1200000.0, 3.5);
-    carDetailsDatabase.emplace_back("Nextron", 1000000.0, 4.0);
-    carDetailsDatabase.emplace_back("Wigo", 684000.0, 17.5);
+    carDetailsDatabase.emplace_back("ZenithEon", 1500000.0, 7.0);
+    carDetailsDatabase.emplace_back("QuantumX", 2000000.0, 6.0);
+    carDetailsDatabase.emplace_back("Luminova", 1200000.0, 8.5);
+    carDetailsDatabase.emplace_back("Nextron", 1000000.0, 9.5);
 
     string defaultCarLoanForm = R"(
                 <section class="container text-light w-100 py-5">

@@ -73,8 +73,6 @@ map<string, string> parse_cookies(const string &cookie_header) {
 }
 
 int main() {
-    cout << "Content-Type: text/html\n\n";
-
     // Read the contents of the style sheet file
     ifstream styleSheetFile("./styles.css");
     string styleSheetContent((istreambuf_iterator<char>(styleSheetFile)), istreambuf_iterator<char>());
@@ -86,11 +84,17 @@ int main() {
     map<string, string> cookies = parse_cookies(cookie_header);
     string name;
     // Check if the user is logged in
-    if (requestMethod == "GET") {
-      if (cookies.find("name") != cookies.end()) {
-          name = cookies["name"];
-      }
+    if (cookies.find("name") != cookies.end()) {
+        name = cookies["name"];
+        if (name == "") {
+            cout << "Location: login.cgi\r\n\r\n";
+        }
     }
+    else {
+        cout << "Location: login.cgi\r\n\r\n";
+    }
+
+    cout << "Content-Type: text/html\n\n";
 
     string userDisplay = "<div class=\"d-flex align-items-center text-light gap-3\">" + 
     (cookies.find("name") != cookies.end() ? 

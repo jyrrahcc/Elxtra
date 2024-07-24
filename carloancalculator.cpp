@@ -166,6 +166,26 @@ int main() {
     ifstream styleSheetFile("./styles.css");
     string styleSheetContent((istreambuf_iterator<char>(styleSheetFile)), istreambuf_iterator<char>());
     styleSheetFile.close();
+
+    string requestMethod = getenv("REQUEST_METHOD");
+    // Read environment variables for cookie and query string
+    string cookie_header = getenv("HTTP_COOKIE") ? getenv("HTTP_COOKIE") : "";
+    map<string, string> cookies = parse_cookies(cookie_header);
+    string name;
+    // Check if the user is logged in
+    if (cookies.find("name") != cookies.end()) {
+        name = cookies["name"];
+        if (name == "") {
+            cout << "Location: login.cgi\r\n\r\n";
+        }
+    }
+    else {
+        cout << "Location: login.cgi\r\n\r\n";
+    }
+
+    // Print the HTTP header
+    cout << "Content-Type: text/html\r\n\r\n";
+
     // CarLoan database
     vector<CarLoan> carLoanDatabase;
 
@@ -234,19 +254,6 @@ int main() {
             <section class="col-md-6">
             </section>
             </section>)";
-
-    // Print the HTTP header
-    cout << "Content-Type: text/html\r\n\r\n";
-
-    string requestMethod = getenv("REQUEST_METHOD");
-    // Read environment variables for cookie and query string
-    string cookie_header = getenv("HTTP_COOKIE") ? getenv("HTTP_COOKIE") : "";
-    map<string, string> cookies = parse_cookies(cookie_header);
-    string name;
-    // Check if the user is logged in
-    if (cookies.find("name") != cookies.end()) {
-          name = cookies["name"];
-    }
 
     string userDisplay = "<div class=\"d-flex align-items-center text-light gap-3\">" + 
     (cookies.find("name") != cookies.end() ? 

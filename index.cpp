@@ -1,7 +1,75 @@
 #include <iostream>
 #include <string>
-#include <fstream>// Include the map header
+#include <vector>
+#include <cstdlib>
+#include <sstream>
+#include <fstream>
+#include <map>
+#include <utility>
+#include <algorithm>
+#include <cctype>
+#include <iomanip>
+#include <cmath>
+#include <unistd.h>
 using namespace std;
+
+// Function to decode URL-encoded strings
+string urlDecode(const string& str) {
+    string result;
+    char hex[3] = {0};
+    for (size_t i = 0; i < str.length(); ++i) {
+        if (str[i] == '%') {
+            if (i + 2 < str.length()) {
+                hex[0] = str[i + 1];
+                hex[1] = str[i + 2];
+                result += static_cast<char>(strtol(hex, nullptr, 16));
+                i += 2;
+            }
+        } else if (str[i] == '+') {
+            result += ' ';
+        } else {
+            result += str[i];
+        }
+    }
+    return result;
+}
+
+// Function to parse query string into a key-value map
+map<string, string> parseQueryString(const string& query) {
+    map<string, string> params;
+    string key, value;
+    istringstream queryStream(query);
+    while (getline(queryStream, key, '=')) {
+        if (getline(queryStream, value, '&')) {
+            params[urlDecode(key)] = urlDecode(value);
+        }
+    }
+    return params;
+}
+
+// Function to parse cookies
+map<string, string> parse_cookies(const string &cookie_header) {
+    map<string, string> cookies;
+    size_t pos = 0;
+    string token;
+    string header = cookie_header;
+    while ((pos = header.find("; ")) != string::npos) {
+        token = header.substr(0, pos);
+        size_t eq_pos = token.find("=");
+        if (eq_pos != string::npos) {
+            string key = token.substr(0, eq_pos);
+            string value = token.substr(eq_pos + 1);
+            cookies[key] = value;
+        }
+        header.erase(0, pos + 2);
+    }
+    if ((pos = header.find("=")) != string::npos) {
+        string key = header.substr(0, pos);
+        string value = header.substr(pos + 1);
+        cookies[key] = value;
+    }
+    return cookies;
+}
 
 int main() {
     // Read the contents of the style sheet file
@@ -11,6 +79,39 @@ int main() {
 
     cout << "Content-Type: text/html\n\n";
 
+    string requestMethod = getenv("REQUEST_METHOD");
+    // Read environment variables for cookie and query string
+    string cookie_header = getenv("HTTP_COOKIE") ? getenv("HTTP_COOKIE") : "";
+    map<string, string> cookies = parse_cookies(cookie_header);
+    string name;
+    // Check if the user is logged in
+    if (requestMethod == "GET") {
+      if (cookies.find("name") != cookies.end()) {
+          name = cookies["name"];
+      }
+    }
+
+    string userDisplay = "<div class=\"d-flex align-items-center text-light gap-3\">" + 
+    (cookies.find("name") != cookies.end() ? 
+          ("<div class='dropdown'>"
+                "<button class='btn btn-outline-danger text-light fw-bold border-light dropdown-toggle' type='button' id='dropdownUser' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>" + 
+                name +
+                "</button>"
+                "<div class='dropdown-menu dropdown-menu-end' aria-labelledby='dropdownUser'>"
+                    "<a class='dropdown-item' href='./carloancalculator.cgi'>Car Loan Calculator</a>"
+                    "<a class='dropdown-item' href='./userprofile.cgi'>User Profile</a>"
+                    "<a class='dropdown-item' href='./logout.cgi'>Logout</a>"
+                "</div>"
+          "</div>") 
+    : 
+          "<a href='./login.cgi' class='btn btn-outline-danger text-light fw-bold border-light'>Login</a>") 
+    + "</div>";
+
+    string welcomeMessage = (cookies.find("name") != cookies.end() ? 
+        ("<h2 class='display-3 text-light'>Welcome, " + name + "!</h2>") : 
+        "<h2 class=\"display-3 text-light\">Drive the Future with Elxtra Motors</h2>");
+
+        
     // Generate the HTML code
     string htmlCode = R"(<!DOCTYPE html>
     <html lang="en">
@@ -32,9 +133,10 @@ int main() {
       <title>Elxtra Motors</title>
       </head>
       <body>
-      <header id="navbar" class="fixed-top navbar navbar-expand-md navbar-dark fade-down">
+      <!-- Navbar -->
+      <header id="navbar" class="fixed-top header navbar navbar-expand-lg navbar-dark fade-down">
         <div class="container-fluid">
-          <a class="navbar-brand d-flex gap-3 align-items-center" href="#">
+          <a class="navbar-brand d-flex align-items-center" href="#">
             <img src="https://scontent.fmnl9-3.fna.fbcdn.net/v/t1.15752-9/450574779_820070233598209_5547379444503085753_n.png?_nc_cat=104&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeGCL7NnXUKoqxcaJEGWHvPYg0tBM1PjUZuDS0EzU-NRm7X0q5jk79pwhZnPTHinMxHk0BRUU6dSFOpXR6y4Zs6o&_nc_ohc=hQLcWxI2vNkQ7kNvgEdpQpd&_nc_ht=scontent.fmnl9-3.fna&oh=03_Q7cD1QGi2ixXMwmdWUXjErCioNdXkHryhhdrNwiz3gJ54LEjlw&oe=66C13C8A" alt="" width="30" height="24" class="d-inline-block align-text-top">
             <h1 class="display-4 fs-4 m-3">Elxtra</h1>
           </a>
@@ -42,26 +144,28 @@ int main() {
           <span class="navbar-toggler-icon"></span>
           </button>
           <nav class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-            <a class="nav-link p-0 m-3 active" aria-current="page" href="./index.cgi">Home</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link p-0 m-3" href="./aboutus.cgi">About Us</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link p-0 m-3" href="./contactus.cgi" tabindex="-1" >Contact Us</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link p-0 m-3" href="#" tabindex="-1" aria-disabled="true">FAQs</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link p-0 m-3" href="#" tabindex="-1" aria-disabled="true">Car Models</a>
-            </li>
-          </ul>
-          <div class="d-flex">
-            <a class="btn m-3 btn-outline-primary text-light fw-bold border-light">Login</a>
-          </div>
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link p-0 m-3 active" aria-current="page" href="./index.cgi">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link p-0 m-3" href="./aboutus.cgi">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link p-0 m-3" href="./contactus.cgi">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link p-0 m-3" href="./carmodels.cgi">Car Models</a>
+                </li>
+                </ul>
+                <div class="d-flex justify-content-between align-items-center gap-3">
+                <form method="post" action="./carmodels.cgi" class="form-inline flex-grow-1">
+                    <section class="input-group">
+                        <input class="form-control " type="search" placeholder="Search Car Model..." name="model" aria-label="Search" required>
+                        <button class="btn btn-outline-danger border border-light text-light" type="submit"><i class="fas fa-search"></i></button>
+                    </section>
+                </form>)" + userDisplay + R"(</div></nav>
+        </div>
       </header>
       <main>
         <!-- Hero Section -->
@@ -69,10 +173,10 @@ int main() {
           <section class="darkener boundary py-5 w-100 d-flex align-items-center justify-content-center">
             <section class="container">
               <section class="row">
-                <section class="col-sm-8 fade-left">
-                  <h2 class="display-3 text-light">Drive the Future with Elxtra Motors</h2>
+                <section class="col-sm-8 animate fade-left">
+                  )" + welcomeMessage + R"(
                   <p class="lead text-light">At Elxtra Motors, we are redefining the automotive industry with our state-of-the-art electric vehicles. Our commitment to innovation and elegance sets us apart, offering you a driving experience like no other. Discover the future of transportation today with Elxtra.</p>
-                  <a href="" class="btn btn-light text-danger fw-bold">Learn More</a>
+                  <a href="./aboutus.cgi" class="btn btn-light text-danger fw-bold">Learn More</a>
                 </section>
                 <section class="col-sm-4">
                 </section>
@@ -82,7 +186,7 @@ int main() {
           <div class="arrow d-none d-sm-flex" onclick='window.scrollBy(50, window.innerHeight)'>
           </div>
         </section>
-        <section class="bg-dark">
+        <section class="bg-dark fade animate">
           <section class="container w-100 text-center overflow-hidden position-relative py-2 d-flex gap-5 align-items-center justify-content-center">
             <h2 class="h2 text-light m-auto">Elxtra</h2>
             <h2 class="h2 text-light m-auto">Elxtra</h2>
@@ -91,13 +195,14 @@ int main() {
             <h2 class="h2 text-light m-auto">Elxtra</h2>
           </section>
         </section>
-        <section id="sticky-header" class="container-fluid py-2 text-center border-top border-5 border-bottom border-light">
-          <h2><a href="#featured" class="text-light">Check Out Our Latest Innovations</a></h2>
-         </section>
    <!-- Featured Content -->
-<section id="featured" class="container-fluid">
+     <section id="sticky-header" class="fade animate w-100 py-2 text-center border-top border-5 border-bottom border-light">
+    <h2><a href="#featured" class="text-light">Check Out Our Latest Innovations</a></h2>
+    </section>
+<section id="featured" class="w-100 container-fluid">
+  <section class="container-fuid">
   <section class="row">
-    <section class="col-lg-5 py-5 bg-dark border-5 rounded-circle rounded-bottom border-light">
+    <section class="col-lg-5 py-5 bg-dark position-relative">
       <section class="sticky-sm-top pos text-white text-center d-flex flex-column align-items-center justify-content-center">
         <h2 class="display-4 m-0 h1">Advanced Battery System</h2>
       </section>
@@ -131,7 +236,7 @@ int main() {
 </section>
   <!-- Autonomous Driving -->
  <section class="row">
-  <section class="col-lg-5 py-5 bg-dark">
+  <section class="col-lg-5 py-5 bg-dark position-relative">
     <section class="sticky-sm-top pos text-white text-center d-flex flex-column align-items-center justify-content-center">
       <h2 class="display-4 m-0 h1">Autonomous Driving</h2>
     </section>
@@ -166,7 +271,7 @@ int main() {
 
 <!-- Smart Connectivity -->
     <section class="row">
-      <section class="col-lg-5 py-5 bg-dark">
+      <section class="col-lg-5 py-5 bg-dark position-relative">
         <section class="sticky-sm-top pos text-white text-center d-flex flex-column align-items-center justify-content-center">
           <h2 class="display-4 m-0 h1">Smart Connectivity</h2>
         </section>
@@ -198,6 +303,7 @@ int main() {
       </section>
     </section>
   </section>
+  </section>
 </section>
 
   <!-- Customer Testimonials -->
@@ -206,7 +312,7 @@ int main() {
      <section class="mb-4 animate fade-lft">
         <h2 class="text-light text-center">Customer Testimonials</h2>
         <p class="lead text-light text-center">Read what our customers have to say about their experiences with Elxtra Motors</p>
-        <section class="row d-flex flex-wrap animate fade-up">
+        <section class="row d-flex align-items-center justify-content-center flex-wrap animate fade-up">
         <div class="row d-flex flex-wrap justify-content-center">
             <div class="col-lg-4 p-3">
                 <section class="inset-card darkener d-flex flex-column align-items-left justify-content-center p-3 rounded-3">
@@ -309,79 +415,75 @@ int main() {
 </section>
 </section>
 
-<!-- Test Drive or call to action -->
-<section class="w-100 text-light" style="background-image: url('https://ideogram.ai/assets/image/lossless/response/Fu1Y4up9Sreyx-tgdM7_9g'); background-size: cover; background-position: center;">
+<!-- Call to action -->
+<section class="w-100 text-light fade-up animate" style="background-image: url('https://ideogram.ai/assets/image/lossless/response/Fu1Y4up9Sreyx-tgdM7_9g'); background-size: cover; background-position: center;">
+    <section class="darkener w-100">
     <section class="container py-5">
-     <section class="mb-4 animate fade-up">
-        <section class="cta endcta d-flex align-items-center">
-            <section class="container-fluid py-5 w-100 h-100 d-flex align-center">
-                <section class="container d-flex flex-column align-items-start justify-content-center">
-                    <h2 class="text-light">Experience the future of driving</h2>
-                    <p class="lead">Book a test drive now</p>
-                    <section class="d-flex">
-                        <a class="btn m-3 btn-outline-primary text-light fw-bold border-light">Test</a>
-                    </section>
-                </section>
-            </section>
+      <section>
+        <h2 class="text-light">Experience the future of driving</h2>
+        <p class="lead">Explore Our Models Now</p>
+        <section class="d-flex">
+            <a href='./carmodels.cgi' class='btn btn-outline-danger text-light fw-bold border-light'>Explore</a>
         </section>
+      </section>
+    </section>
     </section>
 </section>
 </section>
       </main>
-      <footer class="">
-        <section class="w-100 container pt-5 pb-3">
-          <section class="d-flex flex-column flex-sm-row align-items-center justify-content-center">
-            <section class="">
-              <img style="min-width: 75px; max-width: 100px;" src="https://scontent.fmnl9-3.fna.fbcdn.net/v/t1.15752-9/450574779_820070233598209_5547379444503085753_n.png?_nc_cat=104&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeGCL7NnXUKoqxcaJEGWHvPYg0tBM1PjUZuDS0EzU-NRm7X0q5jk79pwhZnPTHinMxHk0BRUU6dSFOpXR6y4Zs6o&_nc_ohc=hQLcWxI2vNkQ7kNvgEdpQpd&_nc_ht=scontent.fmnl9-3.fna&oh=03_Q7cD1QGi2ixXMwmdWUXjErCioNdXkHryhhdrNwiz3gJ54LEjlw&oe=66C13C8A" alt="Elxtra" class="w-100 d-inline-block align-text-top">
-            </section>
-            <section class="d-md-flex align-items-center m-auto my-3">
-              <nav>
-                <ul class="d-md-flex p-0 m-0">
-                  <li class="nav-item">
-                  <a class="nav-link p-0 m-3 text-light active" aria-current="page" href="/">Home</a>
-                  </li>
-                  <li class="nav-item">
-                  <a class="nav-link p-0 m-3 text-light" href="#">About Us</a>
-                  </li>
-                  <li class="nav-item">
-                  <a class="nav-link p-0 m-3 text-light" href="#" tabindex="-1" aria-disabled="true">Contact Us</a>
-                  </li>
-                  <li class="nav-item">
-                  <a class="nav-link p-0 m-3 text-light" href="#" tabindex="-1" aria-disabled="true">FAQs</a>
-                  </li>
-                  <li class="nav-item">
-                  <a class="nav-link p-0 m-3 text-light" href="#" tabindex="-1" aria-disabled="true">Car Models</a>
-                  </li>
+      <!-- Footer Section -->
+      <footer>
+            <section class="w-100 container pt-5 pb-3">
+                <section class="animate fade d-flex flex-column flex-sm-row align-items-center justify-content-center">
+                    <section class="">
+                        <img style="min-width: 75px; max-width: 100px;" src="https://scontent.fmnl9-3.fna.fbcdn.net/v/t1.15752-9/450574779_820070233598209_5547379444503085753_n.png?_nc_cat=104&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeGCL7NnXUKoqxcaJEGWHvPYg0tBM1PjUZuDS0EzU-NRm7X0q5jk79pwhZnPTHinMxHk0BRUU6dSFOpXR6y4Zs6o&_nc_ohc=hQLcWxI2vNkQ7kNvgEdpQpd&_nc_ht=scontent.fmnl9-3.fna&oh=03_Q7cD1QGi2ixXMwmdWUXjErCioNdXkHryhhdrNwiz3gJ54LEjlw&oe=66C13C8A" alt="Elxtra" class="w-100 d-inline-block align-text-top">
+                    </section>
+                    <section class="d-md-flex align-items-center m-auto my-3">
+                        <nav>
+                            <ul class="d-md-flex p-0 m-0">
+                            <li class="nav-item">
+                                <a class="nav-link p-0 m-3 text-light" href="./index.cgi">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link p-0 m-3 text-light" href="./aboutus.cgi">About Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link p-0 m-3 text-light" href="./contactus.cgi">Contact Us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link p-0 m-3 text-light" href="./carmodels.cgi">Car Models</a>
+                            </li>
+                            </ul>
+                        </nav>
+                    </section>
+                    <section class="socials d-flex gap-3 align-items-center justify-content-center">
+                        <a href="#" class="text-light fs-4"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-light fs-4"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-light fs-4"><i class="fab fa-instagram"></i></a>
+                    </section>
+                </section>
+                <hr class="animate fade" />
+                <ul class="animate fade d-flex align-items-center justify-content-center gap-3 flex-wrap">
+                    <p class="m-3">© 2024 Elxtra. All rights reserved.</p>
+                    <li class="nav-item">
+                        <a class="nav-link p-0 m-3 text-light" href="#">Privacy Policy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-0 m-3 text-light" href="#">Terms and Conditions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link p-0 m-3 text-light" href="#">Cookie Policy</a>
+                    </li>
                 </ul>
-              </nav>
             </section>
-            <section class="socials d-flex gap-3 align-items-center justify-content-center">
-              <a href="#" class="text-light fs-4"><i class="fab fa-facebook"></i></a>
-              <a href="#" class="text-light fs-4"><i class="fab fa-twitter"></i></a>
-              <a href="#" class="text-light fs-4"><i class="fab fa-instagram"></i></a>
-            </section>
-          </section>
-          <hr />
-          <ul class="d-flex align-items-center justify-content-center gap-3 flex-wrap">
-            <p class="m-3">© 2024 Elxtra. All rights reserved.</p>
-            <li class="nav-item">
-              <a class="nav-link p-0 m-3 text-light" href="#">Privacy Policy</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link p-0 m-3 text-light" href="#" tabindex="-1" aria-disabled="true">Terms and Conditions</a>
-            </li>
-            <li class="nav-item">
-            <a class="nav-link p-0 m-3 text-light" href="#" tabindex="-1" aria-disabled="true">Cookie Policy</a>
-            </li>
-          </ul>
-        </section>
-      </footer>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        </footer>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
       <script>
         const navbar = document.getElementById('navbar');
 
         window.addEventListener('resize', () => {
-          if (window.innerWidth < 768) {
+          if (window.innerWidth < 992) {
             navbar.classList.add('bg-dark');
           } else {
             navbar.classList.remove('bg-dark');
@@ -393,8 +495,13 @@ int main() {
             navbar.classList.add('bg-dark');
             navbar.classList.add('border-darker');
           } else {
-            navbar.classList.remove('bg-dark');
-            navbar.classList.remove('border-darker');
+            if (window.innerWidth < 992) {
+              navbar.classList.add('border-darker');
+              navbar.classList.add('bg-dark');
+            } else {
+              navbar.classList.remove('border-darker');
+              navbar.classList.remove('bg-dark');
+            }
           }
         });
       </script>

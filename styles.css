@@ -119,6 +119,10 @@ h6 {
     transform: rotate(135deg);
 }
 
+.dropdown-menu {
+    right: 0px;
+}
+
 .drop-shadow {
     filter: drop-shadow(20px 20px 50px var(--light-color));
 }
@@ -137,6 +141,7 @@ s
 
 footer {
     background: linear-gradient(135deg, rgba(0, 0, 0, 1) 0%, rgba(215, 45, 72, 1) 100%);
+    border-top: 5px solid var(--secondary-color);
     color: #fff;
 }
 
@@ -185,6 +190,7 @@ body {
 /* Customize the scroll bar */
 ::-webkit-scrollbar {
     width: 5px; /* Set the width of the scroll bar */
+    height: 5px;
     background-color: transparent; /* Set the background color of the scroll bar */
 }
 
@@ -212,7 +218,7 @@ html {
 }
 
 main {
-    background: linear-gradient(90deg, rgba(255, 27, 34, 1) 0%, rgba(215, 45, 72, 1) 100%);
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(215, 45, 72, 1) 100%, rgba(0, 0, 0, 0.8) 100%);
 }
 
 /* Add box-sizing border-box to all elements */
@@ -251,6 +257,10 @@ main {
     top: 90px;
     background-color: var(--primary-color);
     z-index: 2020;
+}
+
+.overflow-x-hidden {
+    overflow-x: hidden;
 }
 
 .pos {
@@ -410,6 +420,35 @@ footer .nav-link:hover::after {
     bottom: 20px;
     z-index: 0;
     box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.8);
+}
+
+.dropdown-menu {
+    background-color: var(--dark-color);
+    border-radius: 10px;
+}
+
+.dropdown-item {
+    color: var(--light-color);
+}
+
+.dropdown-item:hover {
+    background-color: var(--secondary-color) !important;
+    color: #fff !important;
+}
+
+.dropdown-item:focus {
+    background-color: var(--secondary-color) !important;
+    color: #fff !important;
+}
+
+.dropdown-item:active {
+    background-color: var(--secondary-color) !important;
+    color: #fff !important; 
+}
+
+.dropdown-item.active {
+    background-color: var(--secondary-color) !important;
+    color: #fff !important; 
 }
 
 .z-index {

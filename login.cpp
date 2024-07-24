@@ -3,10 +3,12 @@
 #include <map>
 #include <cstdlib>
 #include <unistd.h>
+#include <ctime>
+using namespace std;
 
 // Function to decode URL-encoded strings
-std::string url_decode(const std::string &str) {
-    std::string decoded;
+string url_decode(const string &str) {
+    string decoded;
     char ch;
     int i, ii;
     for (i = 0; i < str.length(); i++) {
@@ -23,33 +25,33 @@ std::string url_decode(const std::string &str) {
 }
 
 // Function to parse cookies
-std::map<std::string, std::string> parse_cookies(const std::string &cookie_header) {
-    std::map<std::string, std::string> cookies;
+map<string, string> parse_cookies(const string &cookie_header) {
+    map<string, string> cookies;
     size_t pos = 0;
-    std::string token;
-    std::string header = cookie_header;
-    while ((pos = header.find("; ")) != std::string::npos) {
+    string token;
+    string header = cookie_header;
+    while ((pos = header.find("; ")) != string::npos) {
         token = header.substr(0, pos);
         size_t eq_pos = token.find("=");
-        if (eq_pos != std::string::npos) {
-            std::string key = token.substr(0, eq_pos);
-            std::string value = token.substr(eq_pos + 1);
+        if (eq_pos != string::npos) {
+            string key = token.substr(0, eq_pos);
+            string value = token.substr(eq_pos + 1);
             cookies[key] = value;
         }
         header.erase(0, pos + 2);
     }
-    if ((pos = header.find("=")) != std::string::npos) {
-        std::string key = header.substr(0, pos);
-        std::string value = header.substr(pos + 1);
+    if ((pos = header.find("=")) != string::npos) {
+        string key = header.substr(0, pos);
+        string value = header.substr(pos + 1);
         cookies[key] = value;
     }
     return cookies;
 }
 
 // Function to print the HTML form
-void print_html_form(const std::string &username = "", const std::string &password = "", bool remember = false) {
-    std::cout << "Content-type: text/html\r\n\r\n";
-    std::cout << R"(
+void print_html_form(const string &username = "", const string &password = "", bool remember = false) {
+    cout << "Content-type: text/html\r\n\r\n";
+    cout << R"(
  <!DOCTYPE html>
   <html lang="en">
   <head>
@@ -292,62 +294,75 @@ void print_html_form(const std::string &username = "", const std::string &passwo
 
 int main() {
     // Get the request method
-    std::string request_method = getenv("REQUEST_METHOD");
+    string request_method = getenv("REQUEST_METHOD");
 
     // Read environment variables for cookie and query string
-    std::string cookie_header = getenv("HTTP_COOKIE") ? getenv("HTTP_COOKIE") : "";
-    std::map<std::string, std::string> cookies = parse_cookies(cookie_header);
-
+    string cookie_header = getenv("HTTP_COOKIE") ? getenv("HTTP_COOKIE") : "";
+    map<string, string> cookies = parse_cookies(cookie_header);
+    bool remember = false;
     if (request_method == "POST") {
         // Read the form data from standard input (POST method)
-        std::string form_data;
-        std::getline(std::cin, form_data, '\0');
+        string form_data;
+        getline(cin, form_data, '\0');
 
         // Parse the form data
-        std::map<std::string, std::string> form_values;
+        map<string, string> form_values;
         size_t pos = 0;
-        while ((pos = form_data.find("&")) != std::string::npos) {
-            std::string token = form_data.substr(0, pos);
+        while ((pos = form_data.find("&")) != string::npos) {
+            string token = form_data.substr(0, pos);
             size_t eq_pos = token.find("=");
-            if (eq_pos != std::string::npos) {
-                std::string key = url_decode(token.substr(0, eq_pos));
-                std::string value = url_decode(token.substr(eq_pos + 1));
+            if (eq_pos != string::npos) {
+                string key = url_decode(token.substr(0, eq_pos));
+                string value = url_decode(token.substr(eq_pos + 1));
                 form_values[key] = value;
             }
             form_data.erase(0, pos + 1);
         }
-        if ((pos = form_data.find("=")) != std::string::npos) {
-            std::string key = url_decode(form_data.substr(0, pos));
-            std::string value = url_decode(form_data.substr(pos + 1));
+        if ((pos = form_data.find("=")) != string::npos) {
+            string key = url_decode(form_data.substr(0, pos));
+            string value = url_decode(form_data.substr(pos + 1));
             form_values[key] = value;
         }
 
         // Retrieve form values
-        std::string username = form_values["username"];
-        std::string password = form_values["password"];
-        bool remember = form_values.find("remember") != form_values.end();
+        string username = form_values["username"];
+        string password = form_values["password"];
+        remember = form_values.find("remember") != form_values.end();
 
-        // Check credentials
-        if (username == "admin" && password == "CDLP2024") {
+        // Get the current time, then subtract enough time to ensure the cookie is in the past
+        time_t now = time(0);
+        struct tm tm = *gmtime(&now);
+        tm.tm_hour -= 1; // Subtract 1 hour from the current time
+        char buf[128];
+        strftime(buf, sizeof buf, "%a, %d %b %Y %H:%M:%S GMT", &tm);
+
+        // Check credentialss
+        if (username == password) {
             // Set cookies if "Remember Me" is checked
+            cout << "Set-Cookie: name=" << username << "; path=/; HttpOnly\r\n";
+
             if (remember) {
-                std::cout << "Set-Cookie: username=" << username << "; path=/; HttpOnly\r\n";
-                std::cout << "Set-Cookie: password=" << password << "; path=/; HttpOnly\r\n";
-                std::cout << "Set-Cookie: remember=1; path=/; HttpOnly\r\n";
+              cout << "Set-Cookie: username=" << username << "; path=/; HttpOnly\r\n";
+                cout << "Set-Cookie: password=" << password << "; path=/; HttpOnly\r\n";
+                cout << "Set-Cookie: remember=;" << remember << "; path=/; HttpOnly\r\n";
+            }
+            else {
+              cout << "Set-Cookie: username=; Expires=" << buf << "; Path=/; HttpOnly\r\n";
+              cout << "Set-Cookie: password=; Expires=" << buf << "; Path=/; HttpOnly\r\n";
+              cout << "Set-Cookie: remember=;" << remember << "; path=/; HttpOnly\r\n";
             }
 
             // Redirect to home page
-            std::cout << "Location: home.cgi\r\n\r\n";
+            cout << "Location: index.cgi\r\n\r\n";
         } else {
             // Invalid credentials, show login page with error
             print_html_form(username, password, remember);
-            std::cout << "<p style='color: red;'>Invalid username or password</p>";
+            cout << "<script>alert(\"Invalid login attempt.\");</script>";
         }
     } else {
         // Check cookies for "Remember Me"
-        std::string username;
-        std::string password;
-        bool remember = false;
+        string username;
+        string password;
 
         if (cookies.find("username") != cookies.end()) {
             username = cookies["username"];
@@ -356,7 +371,7 @@ int main() {
             password = cookies["password"];
         }
         if (cookies.find("remember") != cookies.end()) {
-            remember = true;
+            remember = cookies["remember"] == "true";
         }
 
         // Generate the login page with prefilled fields

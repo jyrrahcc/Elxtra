@@ -9,7 +9,22 @@
 #include <algorithm>
 #include <cctype>
 #include <iomanip>
+#include <cmath>
+#include <unistd.h>
 using namespace std;
+
+// Function to format double to string currency with commas and 2 decimal places
+string formatCurrency(double amount) {
+    string currency = to_string(amount);
+    size_t decimalPos = currency.find(".");
+    if (decimalPos != string::npos && currency.length() - decimalPos > 3) {
+        currency = currency.substr(0, decimalPos + 3);
+    }
+    for (int i = decimalPos - 3; i > 0; i -= 3) {
+        currency.insert(i, ",");
+    }
+    return currency;
+}
 
 class Car {
 private:
@@ -46,7 +61,7 @@ public:
         cout << "<a href=\"?model=" << tag << "\" class=\"row d-flex align-items-center card-display justify-content-center p-4 w-100 text-light position-relative\">";
         cout << "<section class=\"text-shadow z-index animate col-lg-4 d-flex justify-content-center flex-column fade-left\">";
         cout << "<h3 class=\"display-5\">" << model << "</h3>";
-        cout << "<p class=\"fw-bold fs-4\">" << fixed << setprecision(2) << "₱" << price << "</p>";
+        cout << "<p class=\"fw-bold fs-4\">" << "₱" << formatCurrency(price) << "</p>";
         cout << "<p class=\"lead\">" << description << "</p>";
         cout << "</section>";
         cout << "<section class=\"col-lg-8 d-flex align-items-center z-index\">";
@@ -58,11 +73,6 @@ public:
 
     // Member function to display car details
     void displayDetails() const {
-        string priceStr = "₱" + to_string(price);
-        size_t decimalPos = priceStr.find(".");
-        if (decimalPos != string::npos && priceStr.length() - decimalPos > 3) {
-            priceStr = priceStr.substr(0, decimalPos + 3);
-        }
         cout << "<div class=\"container-fluid bg-dark py-3 text-light\">";
             cout << "<div class=\"row\">";
                 cout << "<div class=\"col-md-7 d-flex align-items-center justify-content-center\">";
@@ -92,7 +102,7 @@ public:
             cout << "<div class=\"col-md-5 p-3 d-flex justify-content-center flex-column\">";
                 cout << "<h2 class=\"display-4\">" << model << "</h2>";
                 cout << "<p class=\"lead\">" << description << "</p>";
-                cout << "<p class=\"fs-5 fw-bold\">" << priceStr << "</p>";
+                cout << "<p class=\"fs-5 fw-bold\">" << "₱" <<  formatCurrency(price) << " <span class=\"fs-6 text-muted\">(Including VAT and other fees.)</span></p>";
                 cout << "<p><strong>Color:</strong> " << color << "</p>";
                 cout << "<p><strong>Year:</strong> " << year << "</p>";
                 cout << "<p><strong>Features:</strong> " << features << "</p>";
@@ -231,6 +241,30 @@ string toLower(const string& input) {
     return output;
 }
 
+// Function to parse cookies
+map<string, string> parse_cookies(const string &cookie_header) {
+    map<string, string> cookies;
+    size_t pos = 0;
+    string token;
+    string header = cookie_header;
+    while ((pos = header.find("; ")) != string::npos) {
+        token = header.substr(0, pos);
+        size_t eq_pos = token.find("=");
+        if (eq_pos != string::npos) {
+            string key = token.substr(0, eq_pos);
+            string value = token.substr(eq_pos + 1);
+            cookies[key] = value;
+        }
+        header.erase(0, pos + 2);
+    }
+    if ((pos = header.find("=")) != string::npos) {
+        string key = header.substr(0, pos);
+        string value = header.substr(pos + 1);
+        cookies[key] = value;
+    }
+    return cookies;
+}
+
 int main() {
     // Read the contents of the style sheet file
     ifstream styleSheetFile("./styles.css");
@@ -281,6 +315,30 @@ int main() {
     cout << "Content-Type: text/html\r\n\r\n";
 
     string requestMethod = getenv("REQUEST_METHOD");
+    // Read environment variables for cookie and query string
+    string cookie_header = getenv("HTTP_COOKIE") ? getenv("HTTP_COOKIE") : "";
+    map<string, string> cookies = parse_cookies(cookie_header);
+    string name;
+    // Check if the user is logged in
+    if (cookies.find("name") != cookies.end()) {
+        name = cookies["name"];
+    }
+
+    string userDisplay = "<div class=\"d-flex align-items-center text-light gap-3\">" + 
+    (cookies.find("name") != cookies.end() ? 
+          ("<div class='dropdown'>"
+                "<button class='btn btn-outline-danger text-light fw-bold border-light dropdown-toggle' type='button' id='dropdownUser' data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>" + 
+                name +
+                "</button>"
+                "<div class='dropdown-menu dropdown-menu-end' aria-labelledby='dropdownUser'>"
+                    "<a class='dropdown-item' href='./carloancalculator.cgi'>Car Loan Calculator</a>"
+                    "<a class='dropdown-item' href='./userprofile.cgi'>User Profile</a>"
+                    "<a class='dropdown-item' href='./logout.cgi'>Logout</a>"
+                "</div>"
+          "</div>") 
+    : 
+          "<a href='./login.cgi' class='btn btn-outline-danger text-light fw-bold border-light'>Login</a>") 
+    + "</div>";
 
     // Print the HTML content
     cout << R"(<!DOCTYPE html>
@@ -304,17 +362,17 @@ int main() {
     </head>
     <body>
         <!-- Navbar -->
-        <header id="navbar" class="animate fixed-top navbar navbar-expand-xl navbar-dark fade-down">
-            <div class="container-fluid">
-                <a class="navbar-brand d-flex gap-3 align-items-center" href="./index.cgi">
-                    <img src="https://scontent.fmnl9-3.fna.fbcdn.net/v/t1.15752-9/450574779_820070233598209_5547379444503085753_n.png?_nc_cat=104&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeGCL7NnXUKoqxcaJEGWHvPYg0tBM1PjUZuDS0EzU-NRm7X0q5jk79pwhZnPTHinMxHk0BRUU6dSFOpXR6y4Zs6o&_nc_ohc=hQLcWxI2vNkQ7kNvgEdpQpd&_nc_ht=scontent.fmnl9-3.fna&oh=03_Q7cD1QGi2ixXMwmdWUXjErCioNdXkHryhhdrNwiz3gJ54LEjlw&oe=66C13C8A" alt="" width="30" height="24" class="d-inline-block align-text-top">
-                    <h1 class="display-4 fs-4 m-3">Elxtra</h1>
-                </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <nav class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto">
+      <header id="navbar" class="fixed-top header navbar navbar-expand-lg navbar-dark fade-down">
+        <div class="container-fluid">
+          <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="https://scontent.fmnl9-3.fna.fbcdn.net/v/t1.15752-9/450574779_820070233598209_5547379444503085753_n.png?_nc_cat=104&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeGCL7NnXUKoqxcaJEGWHvPYg0tBM1PjUZuDS0EzU-NRm7X0q5jk79pwhZnPTHinMxHk0BRUU6dSFOpXR6y4Zs6o&_nc_ohc=hQLcWxI2vNkQ7kNvgEdpQpd&_nc_ht=scontent.fmnl9-3.fna&oh=03_Q7cD1QGi2ixXMwmdWUXjErCioNdXkHryhhdrNwiz3gJ54LEjlw&oe=66C13C8A" alt="" width="30" height="24" class="d-inline-block align-text-top">
+            <h1 class="display-4 fs-4 m-3">Elxtra</h1>
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <nav class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto">
                 <li class="nav-item">
                     <a class="nav-link p-0 m-3" href="./index.cgi">Home</a>
                 </li>
@@ -322,27 +380,21 @@ int main() {
                     <a class="nav-link p-0 m-3" href="./aboutus.cgi">About Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link p-0 m-3" href="./contactus.cgi" tabindex="-1" aria-disabled="true">Contact Us</a>
+                    <a class="nav-link p-0 m-3" href="./contactus.cgi">Contact Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link p-0 m-3" href="./faqs.cgi" tabindex="-1" aria-disabled="true">FAQs</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link p-0 m-3 active" aria-current="page" href="./carmodels.cgi" tabindex="-1" aria-disabled="true">Car Models</a>
+                    <a class="nav-link p-0 m-3 active" aria-current="page" href="./carmodels.cgi">Car Models</a>
                 </li>
                 </ul>
-                <form method="post" class="form-inline">
+                <div class="d-flex justify-content-between align-items-center gap-3">
+                <form method="post" class="form-inline flex-grow-1">
                     <section class="input-group">
-                        <input class="form-control" type="search" placeholder="Search Car Model..." name="model" aria-label="Search" required>
+                        <input class="form-control " type="search" placeholder="Search Car Model..." name="model" aria-label="Search" required>
                         <button class="btn btn-outline-danger border border-light text-light" type="submit"><i class="fas fa-search"></i></button>
                     </section>
-                </form>
-                <div class="d-flex">
-                <a href="./login.cgi" class="btn m-3 btn-outline-danger text-light fw-bold border-light">Login</a>
-                </div>
-            </nav>
-            </div>
-        </header>
+                </form>)" + userDisplay + R"(</div></nav>
+        </div>
+      </header>
         <main>
         <!-- Header Section -->
         <section class="cover2">
@@ -379,8 +431,8 @@ int main() {
         // Display all car models page 
         else {
             cout << R"(<section class="container py-5 text-light">
-                <h2 class="display-5 text-shadow">Discover the Future of Driving with Elxtra</h2>
-                <p class="lead">Welcome to Elxtra, where cutting-edge technology meets unparalleled performance. Our innovative car models are designed to provide an exceptional driving experience that exceeds expectations. Whether you're looking for speed, luxury, efficiency, or versatility, Elxtra has the perfect car to match your lifestyle. Explore our range of state-of-the-art electric vehicles and join us on the journey to a sustainable and exhilarating future.</p>
+                <h2 class="display-5 fade-left animate text-shadow">Discover the Future of Driving with Elxtra</h2>
+                <p class="lead fade-left animate">Welcome to Elxtra, where cutting-edge technology meets unparalleled performance. Our innovative car models are designed to provide an exceptional driving experience that exceeds expectations. Whether you're looking for speed, luxury, efficiency, or versatility, Elxtra has the perfect car to match your lifestyle. Explore our range of state-of-the-art electric vehicles and join us on the journey to a sustainable and exhilarating future.</p>
                 <section class="d-flex align-items-center justify-content-center gap-3 flex-wrap">)";
             for (const Car& car : carDatabase) {
                 car.displayCard();
@@ -447,7 +499,7 @@ int main() {
     }
         cout << R"(</main>
         <!-- Footer Section -->
-        <footer>
+      <footer>
             <section class="w-100 container pt-5 pb-3">
                 <section class="animate fade d-flex flex-column flex-sm-row align-items-center justify-content-center">
                     <section class="">
@@ -464,9 +516,6 @@ int main() {
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link p-0 m-3 text-light" href="./contactus.cgi">Contact Us</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link p-0 m-3 text-light" href="./faqs.cgi">FAQs</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link p-0 m-3 text-light" href="./carmodels.cgi">Car Models</a>
@@ -487,37 +536,42 @@ int main() {
                         <a class="nav-link p-0 m-3 text-light" href="#">Privacy Policy</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link p-0 m-3 text-light" href="#">Terms and Conditions</a>
+                        <a class="nav-link p-0 m-3 text-light" href="#">Terms and Conditions</a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link p-0 m-3 text-light" href="#">Cookie Policy</a>
+                        <a class="nav-link p-0 m-3 text-light" href="#">Cookie Policy</a>
                     </li>
                 </ul>
             </section>
         </footer>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Navbar Animation Script -->
-        <script>
-            const navbar = document.getElementById('navbar');
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+      <script>
+        const navbar = document.getElementById('navbar');
 
-            window.addEventListener('resize', () => {
-                if (window.innerWidth < 768) {
-                    navbar.classList.add('bg-dark');
-                } else {
-                    navbar.classList.remove('bg-dark');
-                }
-            });
+        window.addEventListener('resize', () => {
+          if (window.innerWidth < 992) {
+            navbar.classList.add('bg-dark');
+          } else {
+            navbar.classList.remove('bg-dark');
+          }
+        });
 
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 0) {
-                    navbar.classList.add('bg-dark');
-                    navbar.classList.add('border-darker');
-                } else {
-                    navbar.classList.remove('bg-dark');
-                    navbar.classList.remove('border-darker');
-                }
-            });
-        </script>
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 0) {
+            navbar.classList.add('bg-dark');
+            navbar.classList.add('border-darker');
+          } else {
+            if (window.innerWidth < 992) {
+              navbar.classList.add('border-darker');
+              navbar.classList.add('bg-dark');
+            } else {
+              navbar.classList.remove('border-darker');
+              navbar.classList.remove('bg-dark');
+            }
+          }
+        });
+      </script>
         <!-- Scroll Animation Script -->
         <script>
             let observer;

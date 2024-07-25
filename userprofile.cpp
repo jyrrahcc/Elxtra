@@ -73,8 +73,6 @@ map<string, string> parse_cookies(const string &cookie_header) {
 }
 
 int main() {
-    cout << "Content-Type: text/html\n\n";
-
     // Read the contents of the style sheet file
     ifstream styleSheetFile("./styles.css");
     string styleSheetContent((istreambuf_iterator<char>(styleSheetFile)), istreambuf_iterator<char>());
@@ -86,11 +84,17 @@ int main() {
     map<string, string> cookies = parse_cookies(cookie_header);
     string name;
     // Check if the user is logged in
-    if (requestMethod == "GET") {
-      if (cookies.find("name") != cookies.end()) {
-          name = cookies["name"];
-      }
+    if (cookies.find("name") != cookies.end()) {
+        name = cookies["name"];
+        if (name == "") {
+            cout << "Location: login.cgi\r\n\r\n";
+        }
     }
+    else {
+        cout << "Location: login.cgi\r\n\r\n";
+    }
+
+    cout << "Content-Type: text/html\n\n";
 
     string userDisplay = "<div class=\"d-flex align-items-center text-light gap-3\">" + 
     (cookies.find("name") != cookies.end() ? 
@@ -268,8 +272,8 @@ int main() {
                             <div class="col-md-7">
                                 <div class="card-body d-flex flex-column justify-content-center">
                                     <h5 class="text-light">Cedrick Libao</h5>
-                                  <p class="lead">Chief Operating Officer (COO)</p>
-                                <p class="text-light">John Paul ensures smooth operations across all departments, focusing on efficiency and the highest standards of operational excellence.</p>
+                                  <p class="lead">Chief Marketing Officer (CMO)</p>
+                                <p class="text-light">Cedrick leads the marketing team, crafting strategies to enhance brand presence and reach target audiences. He ensures that the company's messaging is consistent and impactful across all channels.</p>
                                     <p class="text-light">shurigami@gmail.com</p>
                                 </div>
                             </div>

@@ -252,7 +252,62 @@ int main() {
                 </section>           
               </section>
             </section>
-        </main>
+            <!-- Meet The team section -->
+        <div class="container py-5 text-light">
+            <div class="animate fade d-flex justify-content-center mb-4">
+                <div class="text-center col-sm-5">
+                    <h2 class="mb-3">Meet The Team</h2>
+                    <p class="subtitle font-weight-normal">Our dedicated team at Elxtra Motors comprises industry experts and innovators who are passionate about driving the future of electric vehicles.</p>
+                </div>
+            </div>
+            <div class="gap-3 animate fade-up flex-wrap d-flex align-items-center justify-content-center">
+              <div style="min-height: 350px;" class="col-xl-5 row m-0 p-0 bg-dark">
+                <div class="col-xxl-4 d-flex flex-column p-1 m-0">
+                      <img class="img-fluid m-0 p-0 h-100" style="object-fit: cover; object-position: center;" src="https://scontent.fmnl25-4.fna.fbcdn.net/v/t1.6435-9/129937480_3725664117526569_1060890035174470038_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=53a332&_nc_eui2=AeHBX0sbd_0V-x7l2xDpyXU43JlavkSgW8vcmVq-RKBby09MoYRqtsGPsyKRagpFH11TQAqIAYG8rd-7V7OdBrEa&_nc_ohc=E9L-Hkv6SLMQ7kNvgFlO4DM&_nc_ht=scontent.fmnl25-4.fna&oh=00_AYAtfFdAkjzFxQs2jv_Sei_nzL2iop0RhfDCqZ_sPKXI_Q&oe=66C4512B"/>
+                    </div>
+                    <div class="col-xxl-7 p-3 m-0">
+                        <h3 class="h5 text-light">John Yrrah Cabiles</h3>
+                        <p class="lead">Chief Executive Officer (CEO)</p>
+                        <p class="text-light">John leads the company with a visionary approach, driving innovation and ensuring the highest standards of quality and performance.</p>
+                        <p class="text-light">jyrrahcc@gmail.com</p>
+                    </div>
+              </div>
+              <div style="min-height: 350px;" class="col-xl-5 row m-0 p-0 bg-dark">
+                <div class="col-xxl-4 d-flex flex-column p-1 m-0">
+                      <img class="img-fluid m-0 p-0 h-100" style="object-fit: cover; object-position: 0px 0px;" src="https://scontent.fmnl25-1.fna.fbcdn.net/v/t39.30808-6/400685916_652746530371106_8942522707911560417_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHNyYuEeXahxjCM4t3BEUl6zyGiujyJHcrPIaK6PIkdyqMEU_sT3RlpVr1Hjn03tE4nbdQqsTvnrFVGlHjAn4_j&_nc_ohc=4MqaZuj9kFgQ7kNvgGhhSfU&_nc_ht=scontent.fmnl25-1.fna&oh=00_AYDUT4eaaQ23QIliMENLFzfb4QG_b59B7P8Vfy5De8QoyA&oe=66A2BBBD"/>
+                    </div>
+                    <div class="col-xxl-7 p-3 m-0">
+                        <h3 class="h5 text-light">Hans Christian Purino</h3>
+                        <p class="lead">Chief Technology Officer (CTO)</p>
+                        <p class="text-light">Hans oversees the development and implementation of cutting-edge technologies, ensuring that Elxtra Motors stays at the forefront of innovation.</p>
+                        <p class="text-light">hcpurino@gmail.com</p>
+                    </div>
+              </div>
+              <div style="min-height: 350px;" class="col-xl-5 row m-0 p-0 bg-dark">
+                <div class="col-xxl-4 d-flex flex-column p-1 m-0">
+                      <img class="img-fluid m-0 p-0 h-100" style="object-fit: cover; object-position: center;" src="https://scontent.fmnl25-1.fna.fbcdn.net/v/t39.30808-6/371077123_279360344821347_6796263961140553935_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHvbxdov0YL2VgT57SY_2uYUTUqRvW957NRNSpG9b3ns-1FoauiGl545QtI0YDvtoqmZthiSR8D37krhK5eufZM&_nc_ohc=Y_UNBUcjPV8Q7kNvgHvEw8-&_nc_ht=scontent.fmnl25-1.fna&oh=00_AYDIcyH9XvQfqQZ0xRKk49P91ZoLk8lu8FgcR7uEqu1tRA&oe=66A2DF6B"/>
+                    </div>
+                    <div class="col-xxl-7 p-3 m-0">
+                        <h3 class="h5 text-light">John Paul Del Pilar</h3>
+                        <p class="lead">Chief Operating Officer (COO)</p>
+                        <p class="text-light">John Paul ensures smooth operations across all departments, focusing on efficiency and the highest standards of operational excellence.</p>
+                        <p class="text-light">jpdelpilar@gmail.com</p>
+                    </div>
+              </div>
+              <div style="min-height: 350px;" class="col-xl-5 row m-0 p-0 bg-dark">
+                <div class="col-xxl-4 d-flex flex-column p-1 m-0">
+                      <img class="img-fluid m-0 p-0 h-100" style="object-fit: cover; object-position: center;" src="https://scontent.fmnl25-3.fna.fbcdn.net/v/t39.30808-6/221831942_1552136185132693_2448188182638511810_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeEn3e4E_ZfuuLlV-DtqHE0R_pLjpSd83W7-kuOlJ3zdbnpQLoygeWCXYLhXU60awXv1w08sw9JjfJyDq2FD7qb7&_nc_ohc=hTP5ZEBLwxcQ7kNvgFQihnB&_nc_ht=scontent.fmnl25-3.fna&oh=00_AYBn9gSe_oHVcreMlnRgTz6U5qwBAOdMiOTpp9Gch-YEuQ&oe=66A2B65B"/>
+                    </div>
+                    <div class="col-xxl-7 p-3 m-0">
+                        <h3 class="h5 text-light">Cedrick Libao</h3>
+                        <p class="lead">Chief Marketing Officer (CMO)</p>
+                        <p class="text-light">Cedrick leads the marketing team, crafting strategies to enhance brand presence and reach target audiences. He ensures that the company's messaging is consistent and impactful across all channels.</p>
+                        <p class="text-light">shurigami@gmail.com</p>
+                    </div>
+              </div>
+            </div>
+        </div>
+    </main>
         <!-- Footer Section -->
       <footer>
             <section class="w-100 container pt-5 pb-3">

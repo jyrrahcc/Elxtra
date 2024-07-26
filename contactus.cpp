@@ -175,7 +175,7 @@ int main() {
           <section class="darkener boundary2 py-5 w-100 d-flex align-items-center justify-content-center">
             <section class="container">
               <section class="row">
-                <section class="col-sm-8 fade-left">
+                <section class="col-sm-8 animate fade-left">
                   <h2 class="display-3 text-light mt-5">Contact us</h2>
                 </section>
               </section>
@@ -212,12 +212,12 @@ int main() {
 <section class="container py-5">
   <h2 class="animate fade-left text-light">FAQs</h2>
   <section class="row">
-    <section class="col-12 mb-3 animate fade-left">
+    <section class="col-12 mb-3 animate fade-left text-light">
       <p class ="text-light">Find answers to commonly asked questions in our FAQ section.</p>
       <div class="accordion" id="faqsAccordion">
-        <div class="accordion-item" style="background-color: #343a40; color: white; border-color: #454d55;">
+        <div class="accordion-item text-light" style="background-color: #343a40; color: white; border-color: #454d55;">
           <h2 class="accordion-header" id="headingOne">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="background-color: #343a40; color: white;">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" style="background-color: #343a40; color: white;">
               What makes Elxtra Motors different from other electric car manufacturers?
             </button>
           </h2>
@@ -324,21 +324,21 @@ int main() {
         <section class="row">
           <section class="col-sm-7 animate fade-left">
             <h2 class="text-shadow">Message Us</h2>
-            <form>
+            <form method="post">
               <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name" placeholder="Your Name">
+                <input type="text" class="form-control" id="name" placeholder="Your Name" required>
               </div>
               <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Your Email">
+                <input type="email" class="form-control" id="email" placeholder="Your Email" required>
               </div>
               <div class="mb-3">
                 <label for="message" class="form-label">Message</label>
-                <textarea class="form-control" id="message" rows="5" placeholder="Your Message"></textarea>
+                <textarea class="form-control" id="message" rows="5" placeholder="Your Message" required></textarea>
               </div>
               <div class="d-flex justify-content-start">
-                <a class="btn m-3 btn-outline-primary text-light fw-bold border-light">Send</a>
+                <button type="submit" class="btn mt-3 btn-outline-danger text-light fw-bold border-light">Send</button>
               </div>
             </form>
           </section>

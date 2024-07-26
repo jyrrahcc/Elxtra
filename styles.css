@@ -653,8 +653,23 @@ label[for="email"] {
     border-radius: 15px;
 }
 
+div.row img.img-fluid {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
 .message-us .form-label {
     color: var(--light-color);
+}
+
+button.accordion-button.collapsed::after {
+    background-color: white;
+    border-radius: 50%;
+}
+
+.accordion-button:not(.collapsed)::after {
+    background-color: white;
+    border-radius: 50%;
 }
 
 .message-us .form-control {

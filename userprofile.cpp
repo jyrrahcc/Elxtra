@@ -10,7 +10,8 @@
 #include <cctype>
 #include <iomanip>
 #include <cmath>
-#include <unistd.h>
+#include "user.h"
+#include "userdatabase.h"
 using namespace std;
 
 
@@ -73,6 +74,8 @@ map<string, string> parse_cookies(const string &cookie_header) {
 }
 
 int main() {
+    UserDatabase userDatabase;
+
     // Read the contents of the style sheet file
     ifstream styleSheetFile("./styles.css");
     string styleSheetContent((istreambuf_iterator<char>(styleSheetFile)), istreambuf_iterator<char>());
@@ -111,6 +114,8 @@ int main() {
     : 
           "<a href='./login.cgi' class='btn btn-outline-danger text-light fw-bold border-light'>Login</a>") 
     + "</div>";
+
+    string userProfile = userDatabase.displayUserByUsername(name);
 
     // Generate the HTML code
     string htmlCode = R"(<!DOCTYPE html>
@@ -181,118 +186,7 @@ int main() {
             </section>
         </section>
        <!-- user profile section -->
-    <div class="py-5 text-light">
-        <div class="container">
-            <div class="row justify-content-center mb-3">
-                <div class="col-md-7 text-center">
-                    <h3 class="mb-3">Meet The Team</h3>
-                    <p class="subtitle font-weight-normal">Our dedicated team at Elxtra Motors comprises industry experts and innovators who are passionate about driving the future of electric vehicles.</p>
-                </div>
-            </div>
-            <div class="row">
-                  <!-- First Column -->
-            <div class="col-lg-12 mb-4">
-                <div class="card card-shadow border-0">
-                    <div class="row no-gutters">
-                        <div class="col-md-5 pro-pic" style="background:url(https://scontent.fmnl25-4.fna.fbcdn.net/v/t1.6435-9/129937480_3725664117526569_1060890035174470038_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=53a332&_nc_eui2=AeHBX0sbd_0V-x7l2xDpyXU43JlavkSgW8vcmVq-RKBby09MoYRqtsGPsyKRagpFH11TQAqIAYG8rd-7V7OdBrEa&_nc_ohc=E9L-Hkv6SLMQ7kNvgFlO4DM&_nc_ht=scontent.fmnl25-4.fna&oh=00_AYAtfFdAkjzFxQs2jv_Sei_nzL2iop0RhfDCqZ_sPKXI_Q&oe=66C4512B) no-repeat center center / cover; height: 400px;">
-                            <div class="card-img-overlay">
-                                <ul class="list-inline position-relative text-center">
-                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-facebook"></i></a></li>
-                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-twitter"></i></a></li>
-                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-instagram"></i></a></li>
-                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-behance"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="card-body d-flex flex-column justify-content-center">
-                                <h5 class="h5 text-light">John Yrrah Cabiles</h5>
-                                <p class="lead">CEO</p>
-                                <p class="text-light">John leads the company with a visionary approach, driving innovation and ensuring the highest standards of quality and performance.</p>
-                                <p class="text-light">jyrrahcc@gmail.com</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Second Column -->
-            <div class="col-lg-12 mb-4">
-                <div class="card card-shadow border-0">
-                    <div class="row no-gutters">
-                        <div class="col-md-7">
-                            <div class="card-body d-flex flex-column justify-content-center">
-                                <h5 class="text-light">Hans Christian S. Purino</h5>
-                                <p class="lead">Chief Technology Officer (CTO)</p>
-                                <p class="text-light">Hans oversees the development and implementation of cutting-edge technologies, ensuring that Elxtra Motors stays at the forefront of innovation.</p>
-                                <p class="text-light">hcpurino@gmail.com</p>
-                            </div>
-                        </div>
-                        <div class="col-md-5 pro-pic" style="background:url(https://scontent.fmnl25-1.fna.fbcdn.net/v/t39.30808-6/400685916_652746530371106_8942522707911560417_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHNyYuEeXahxjCM4t3BEUl6zyGiujyJHcrPIaK6PIkdyqMEU_sT3RlpVr1Hjn03tE4nbdQqsTvnrFVGlHjAn4_j&_nc_ohc=4MqaZuj9kFgQ7kNvgGhhSfU&_nc_ht=scontent.fmnl25-1.fna&oh=00_AYDUT4eaaQ23QIliMENLFzfb4QG_b59B7P8Vfy5De8QoyA&oe=66A2BBBD) no-repeat center center / cover; height: 400px;">
-                            <div class="card-img-overlay">
-                                <ul class="list-inline position-relative text-center">
-                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-facebook"></i></a></li>
-                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-twitter"></i></a></li>
-                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-instagram"></i></a></li>
-                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-behance"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Third Column -->
-            <div class="col-lg-12 mb-4">
-                <div class="card card-shadow border-0">
-                    <div class="row no-gutters">
-                        <div class="col-md-5 pro-pic" style="background:url(https://scontent.fmnl25-1.fna.fbcdn.net/v/t39.30808-6/371077123_279360344821347_6796263961140553935_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHvbxdov0YL2VgT57SY_2uYUTUqRvW957NRNSpG9b3ns-1FoauiGl545QtI0YDvtoqmZthiSR8D37krhK5eufZM&_nc_ohc=Y_UNBUcjPV8Q7kNvgHvEw8-&_nc_ht=scontent.fmnl25-1.fna&oh=00_AYDIcyH9XvQfqQZ0xRKk49P91ZoLk8lu8FgcR7uEqu1tRA&oe=66A2DF6B) no-repeat center center / cover; height: 400px;">
-                            <div class="card-img-overlay">
-                                <ul class="list-inline position-relative text-center">
-                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-facebook"></i></a></li>
-                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-twitter"></i></a></li>
-                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-instagram"></i></a></li>
-                                    <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-behance"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="card-body d-flex flex-column justify-content-center">
-                                <h5 class="text-light">John Paul Del Pilar</h5>
-                                <p class="lead">Chief Operating Officer (COO)</p>
-                                <p class="text-light">John Paul ensures smooth operations across all departments, focusing on efficiency and the highest standards of operational excellence.</p>
-                                <p class="text-light">jpdelpilar@gmail.com</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-                <!-- Fourth Column -->
-                <div class="col-lg-12 mb-4">
-                    <div class="card card-shadow border-0">
-                        <div class="row no-gutters">
-                            <div class="col-md-7">
-                                <div class="card-body d-flex flex-column justify-content-center">
-                                    <h5 class="text-light">Cedrick Libao</h5>
-                                  <p class="lead">Chief Operating Officer (COO)</p>
-                                <p class="text-light">John Paul ensures smooth operations across all departments, focusing on efficiency and the highest standards of operational excellence.</p>
-                                    <p class="text-light">shurigami@gmail.com</p>
-                                </div>
-                            </div>
-                            <div class="col-md-5 pro-pic" style="background:url(https://scontent.fmnl25-3.fna.fbcdn.net/v/t39.30808-6/221831942_1552136185132693_2448188182638511810_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeEn3e4E_ZfuuLlV-DtqHE0R_pLjpSd83W7-kuOlJ3zdbnpQLoygeWCXYLhXU60awXv1w08sw9JjfJyDq2FD7qb7&_nc_ohc=hTP5ZEBLwxcQ7kNvgFQihnB&_nc_ht=scontent.fmnl25-3.fna&oh=00_AYBn9gSe_oHVcreMlnRgTz6U5qwBAOdMiOTpp9Gch-YEuQ&oe=66A2B65B) no-repeat center center / cover; height: 400px;">
-                                <div class="card-img-overlay">
-                                    <ul class="list-inline position-relative text-center">
-                                        <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-facebook"></i></a></li>
-                                        <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-twitter"></i></a></li>
-                                        <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-instagram"></i></a></li>
-                                        <li class="list-inline-item"><a href="#" class="text-decoration-none d-block text-white px-1"><i class="icon-social-behance"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+        )" + userProfile +  R"(
 </main>
       <!-- Footer Section -->
       <footer>
@@ -344,6 +238,18 @@ int main() {
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
       <script>
         const navbar = document.getElementById('navbar');
+        
+        const password = document.getElementById('password');
+
+        // eventlistener hover in password element
+        password.addEventListener('mouseover', () => {
+            password.type = 'text';
+        });
+
+        // eventlistener hover out password element
+        password.addEventListener('mouseout', () => {
+            password.type = 'password';
+        });
 
         window.addEventListener('resize', () => {
           if (window.innerWidth < 992) {

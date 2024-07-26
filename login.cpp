@@ -10,7 +10,8 @@
 #include <cctype>
 #include <iomanip>
 #include <cmath>
-#include <unistd.h>
+#include "user.h"
+#include "userdatabase.h"
 using namespace std;
 
 // Function to decode URL-encoded strings
@@ -321,6 +322,7 @@ void print_html_form(const string &styleSheetContent, const string &username, co
 }
 
 int main() {
+    UserDatabase userDatabase;
     // Read the contents of the style sheet file
     ifstream styleSheetFile("./styles.css");
     string styleSheetContent((istreambuf_iterator<char>(styleSheetFile)), istreambuf_iterator<char>());
@@ -374,7 +376,7 @@ int main() {
                   }
                   if (!hasSpecialChars) {
                     // Check credentials
-                    if (username == password) {
+                    if (userDatabase.getUserByUsername(username) != nullptr && userDatabase.getUserByUsername(username)->getPassword() == password) {
                         cout << "Set-Cookie: name=" << username << "; path=/; HttpOnly\r\n";
                         
                         if (postParams.find("remember") != postParams.end()) {

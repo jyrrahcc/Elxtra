@@ -33,6 +33,14 @@ h6 {
     box-shadow: inset 10px 10px 10px var(--primary-color);
 }
 
+.cover4 {
+    background-image: url("https://ideogram.ai/assets/image/lossless/response/7D9nJ50qT5-kEtnUp_iHrA");
+    background-size: cover;
+    background-position: fixed;
+    background-repeat: no-repeat;
+    box-shadow: inset 10px 10px 10px var(--primary-color);
+}
+
 .boundary2 {
     border-bottom-right-radius: 70%;
 }
@@ -626,7 +634,6 @@ label[for="email"] {
 
 .message-us{
     padding: 50px 0;
-    background-color: var(--dark-color);
 }
 
 .message-us .h2 {
@@ -642,7 +649,6 @@ label[for="email"] {
     gap: 20px;
     max-width: 600px;
     margin: 0 auto;
-    background-color: #252525;
     padding: 20px;
     border-radius: 15px;
 }
@@ -663,7 +669,6 @@ label[for="email"] {
     border-color: var(--primary-color);
     box-shadow: 0 0 0 0.2rem rgba(226, 21, 21, 0.995);
 }
-
 
 
 

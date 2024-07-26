@@ -10,7 +10,6 @@
 #include <cctype>
 #include <iomanip>
 #include <cmath>
-#include <unistd.h>
 using namespace std;
 
 // Function to format double to string currency with commas and 2 decimal places
@@ -420,6 +419,18 @@ int main() {
                 if (car.getTag() == modelTag) {
                     found = true;
                     car.displayDetails();
+                    cout << "<div class='bg-dark'><div class=\"container w-100 py-5 text-light\">";
+                    cout << "<h2>Finance Your Dream Car with Ease</h2>";
+                    cout << R"(<p class="lead">At Elxtra, we understand that purchasing a new car is a significant investment. That's why we've created the Elxtra Car Loan Calculator, a powerful tool designed to help you plan your finances and make informed decisions.</p>)";
+                    if (cookies.find("name") != cookies.end()) {
+                        cout << "<p class='lead'>Get started by using the Elxtra Car Loan Calculator with " << car.getModel() << " to estimate your monthly payments and find the best financing options for your budget.</p>";
+                        cout << "<a href='./carloancalculator.cgi?carModel=" << car.getModel() << "' class='btn btn-outline-danger text-light fw-bold border-light'>Car Loan Calculator</a>";
+                    } else {
+                        cout << "<p class='lead'>You need to login first before using the Car Loan Calculator.</p>";
+                        cout << "<p class='lead'>By logging in and using the Elxtra Car Loan Calculator, you'll not only get accurate loan estimates but also help us gather valuable data to improve our services and tailor our offerings to meet your needs better.</p>";
+                        cout << "<a href='./login.cgi' class='btn btn-outline-danger text-light fw-bold border-light'>Login</a>";
+                    }
+                    cout << "</div></div>";
                     break;
                 }
             }
@@ -497,6 +508,7 @@ int main() {
             cout << "</section>";
         }
     }
+
         cout << R"(</main>
         <!-- Footer Section -->
       <footer>

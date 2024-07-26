@@ -263,7 +263,7 @@ int main() {
             <div class="gap-3 animate fade-up flex-wrap d-flex align-items-center justify-content-center">
               <div style="min-height: 350px;" class="col-xl-5 row m-0 p-0 bg-dark">
                 <div class="col-xxl-4 d-flex flex-column p-1 m-0">
-                      <img class="img-fluid m-0 p-0 h-100" style="object-fit: cover; object-position: center;" src="https://scontent.fmnl25-4.fna.fbcdn.net/v/t1.6435-9/129937480_3725664117526569_1060890035174470038_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=53a332&_nc_eui2=AeHBX0sbd_0V-x7l2xDpyXU43JlavkSgW8vcmVq-RKBby09MoYRqtsGPsyKRagpFH11TQAqIAYG8rd-7V7OdBrEa&_nc_ohc=E9L-Hkv6SLMQ7kNvgFlO4DM&_nc_ht=scontent.fmnl25-4.fna&oh=00_AYAtfFdAkjzFxQs2jv_Sei_nzL2iop0RhfDCqZ_sPKXI_Q&oe=66C4512B"/>
+                      <img class="img-fluid m-0 p-0 h-100" style="object-fit: cover; object-position: center;" src="https://scontent.fmnl25-2.fna.fbcdn.net/v/t1.15752-9/451477626_914956610644807_1634824569928786562_n.png?_nc_cat=102&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeGk9mWWFfP0D3PGHeUtTK8-E6KwFTf1K8QTorAVN_UrxDEzO699ZMgd5gE-drZDMlUwYGI0tbBAZqG7y5-U2bh6&_nc_ohc=-Wq-i1lPBuEQ7kNvgFIm1Nr&_nc_ht=scontent.fmnl25-2.fna&oh=03_Q7cD1QGsqUezG44gJ3n0c0UGBVRz-p1o5dD0wmlWwVFupSzS2A&oe=66CAF06B"/>
                     </div>
                     <div class="col-xxl-7 p-3 m-0">
                         <h3 class="h5 text-light">John Yrrah Cabiles</h3>
@@ -274,7 +274,7 @@ int main() {
               </div>
               <div style="min-height: 350px;" class="col-xl-5 row m-0 p-0 bg-dark">
                 <div class="col-xxl-4 d-flex flex-column p-1 m-0">
-                      <img class="img-fluid m-0 p-0 h-100" style="object-fit: cover; object-position: 0px 0px;" src="https://scontent.fmnl25-1.fna.fbcdn.net/v/t39.30808-6/400685916_652746530371106_8942522707911560417_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHNyYuEeXahxjCM4t3BEUl6zyGiujyJHcrPIaK6PIkdyqMEU_sT3RlpVr1Hjn03tE4nbdQqsTvnrFVGlHjAn4_j&_nc_ohc=4MqaZuj9kFgQ7kNvgGhhSfU&_nc_ht=scontent.fmnl25-1.fna&oh=00_AYDUT4eaaQ23QIliMENLFzfb4QG_b59B7P8Vfy5De8QoyA&oe=66A2BBBD"/>
+                      <img class="img-fluid m-0 p-0 h-100" style="object-fit: cover; object-position: 0px 0px;" src="https://scontent.fmnl25-3.fna.fbcdn.net/v/t1.15752-9/450167856_835600998664297_6010053330565665654_n.png?_nc_cat=106&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeEMBpi1T6sQUTOD9IWM7raxgH8G1_7pas-AfwbX_ulqz03cUmPEOEEQ4wvV5ig0BoLZ35oEo7FRADx_lMdoTQot&_nc_ohc=JRpfLyO65hQQ7kNvgHJaD0R&_nc_ht=scontent.fmnl25-3.fna&oh=03_Q7cD1QFI7XC5b-b3MS-ynyFtgaHI_B9SyJ5beuAqheW3MeokPg&oe=66CAC9C7"/>
                     </div>
                     <div class="col-xxl-7 p-3 m-0">
                         <h3 class="h5 text-light">Hans Christian Purino</h3>
@@ -285,7 +285,7 @@ int main() {
               </div>
               <div style="min-height: 350px;" class="col-xl-5 row m-0 p-0 bg-dark">
                 <div class="col-xxl-4 d-flex flex-column p-1 m-0">
-                      <img class="img-fluid m-0 p-0 h-100" style="object-fit: cover; object-position: center;" src="https://scontent.fmnl25-1.fna.fbcdn.net/v/t39.30808-6/371077123_279360344821347_6796263961140553935_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeHvbxdov0YL2VgT57SY_2uYUTUqRvW957NRNSpG9b3ns-1FoauiGl545QtI0YDvtoqmZthiSR8D37krhK5eufZM&_nc_ohc=Y_UNBUcjPV8Q7kNvgHvEw8-&_nc_ht=scontent.fmnl25-1.fna&oh=00_AYDIcyH9XvQfqQZ0xRKk49P91ZoLk8lu8FgcR7uEqu1tRA&oe=66A2DF6B"/>
+                      <img class="img-fluid m-0 p-0 h-100" style="object-fit: cover; object-position: center;" src="https://scontent.fmnl25-4.fna.fbcdn.net/v/t1.15752-9/451742799_1247436466270994_2997015604521573902_n.png?_nc_cat=100&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeE3XS_xJkLBGnosSs6RrS85Q-BlRpCHB_BD4GVGkIcH8GFtHAmanuf8SnuoLcKpaOe8c4kMBtdZNuwuNuLanZcN&_nc_ohc=_pxcHhl6XxEQ7kNvgFYmYyM&_nc_ht=scontent.fmnl25-4.fna&oh=03_Q7cD1QEHTpez9zSHjBNmng3QIkpGuC5Zz64UFFTwwG0j9xuWhw&oe=66CAE1C9"/>
                     </div>
                     <div class="col-xxl-7 p-3 m-0">
                         <h3 class="h5 text-light">John Paul Del Pilar</h3>
@@ -296,7 +296,7 @@ int main() {
               </div>
               <div style="min-height: 350px;" class="col-xl-5 row m-0 p-0 bg-dark">
                 <div class="col-xxl-4 d-flex flex-column p-1 m-0">
-                      <img class="img-fluid m-0 p-0 h-100" style="object-fit: cover; object-position: center;" src="https://scontent.fmnl25-3.fna.fbcdn.net/v/t39.30808-6/221831942_1552136185132693_2448188182638511810_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=a5f93a&_nc_eui2=AeEn3e4E_ZfuuLlV-DtqHE0R_pLjpSd83W7-kuOlJ3zdbnpQLoygeWCXYLhXU60awXv1w08sw9JjfJyDq2FD7qb7&_nc_ohc=hTP5ZEBLwxcQ7kNvgFQihnB&_nc_ht=scontent.fmnl25-3.fna&oh=00_AYBn9gSe_oHVcreMlnRgTz6U5qwBAOdMiOTpp9Gch-YEuQ&oe=66A2B65B"/>
+                      <img class="img-fluid m-0 p-0 h-100" style="object-fit: cover; object-position: center;" src="https://scontent.fmnl25-3.fna.fbcdn.net/v/t1.15752-9/451632551_1466644154215011_3000925222443403705_n.png?_nc_cat=101&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeE--A0SRl0SnuKvEBLd2YRX2BKkyzGNRrjYEqTLMY1GuCjyPo4bDsmTdyq3xDSsX0JPWTjJyCg9ERi4-ThFdzz6&_nc_ohc=0Op5-uCa6WAQ7kNvgEL0_6I&_nc_ht=scontent.fmnl25-3.fna&oh=03_Q7cD1QF60mutMM8q9gMmteZzhnS3XwemtheF8tcMkeH1lzotzg&oe=66CAD1CC"/>
                     </div>
                     <div class="col-xxl-7 p-3 m-0">
                         <h3 class="h5 text-light">Cedrick Libao</h3>

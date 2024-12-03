@@ -4,3 +4,6 @@ Elxtra Motors is a cutting-edge electric car company committed to revolutionizin
 
 Setup Instructions:
 To run this program you need to copy this directory "Elextra" to the cgi-bin of your XAMPP folder and in your browser go to localhost/cgi-bin/elxtra/index.cgi
+
+link:
+https://jyrrahcc.github.io/Elxtra/
